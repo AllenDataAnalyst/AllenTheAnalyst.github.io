@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+
+-->
+<html>
+	<head>
+		<title>Data Analyst Project Profile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<article id="generic">
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Allen The Analyst</a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="About ME.html">About Me</a></li>
+						<li><li><a href="index.html">Projects</a></li>
+						<li class="active"><a href="SQL.html">SQL</a></li>						
+						<li><a href="Python.html">PYTHON</a></li>
+						<li><a href="Power BI.html">Power BI</a></li>
+						<li><a href="Tableau.html">TABLEAU</a></li>
+						<li><a href="EXCEL.html">EXCEL</a></li>
+						<li><a href="Looker_studio.html">LOOKER</a></li>
+						
+					</ul>
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
+								<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+						<section class="post">
+							<header class="major">
+								<h1>Developing ETL pipelines with SSIS (SQL Server Integration Services) </h1>
+								<video src="Video/SSIS_Video.mp4" autoplay loop muted class="image fit">
+									Your browser does not support the video tag.
+								  </video>								  
+								<p>To improve data integration and reporting efficiency, I needed to create a robust ETL process for loading data into the SQL Server database.</p>
+								<header class="major">
+									<h3 style="font-weight: bold; text-align: left;">TASK:</h3>
+									<ul style="text-align: left;">
+									  <li> I developed two SSIS packages: STG_FCT_PRODUCT_SALES for staging data and FCT_PRODUCT_SALES for transferring data to the final table.</li>
+									  
+									</ul>
+									<h3 style="font-weight: bold; text-align: left;">ACTION:</h3>
+									<ul style="text-align: left;">
+									  <li>In the STG_FCT_PRODUCT_SALES package, I set up a Connection Manager for the source files, created a variable to make the source dynamic, and used an Execute SQL Task to truncate the staging table. I implemented a Foreach Loop Container to dynamically iterate over the source files and added a Data Flow Task to transfer data to the SQL Server database. After processing, I moved the files to a loaded folder to confirm successful execution.</li>
+									  <li>In the FCT_PRODUCT_SALES package, I added an Execute SQL Task to delete existing data to avoid duplication using the query:
+										DELETE FROM [dbo].[FCT_PRODUCT_SALES]
+										WHERE ORDER_ID IN (SELECT DISTINCT ORDER_ID FROM [dbo].[STG_FCT_PRODUCT_SALES]);
+										I also added a Data Flow Task using OLE DB connections to move data from the staging table to the FCT_PRODUCT_SALES table. Additionally, I configured SQL Server Agent to schedule the packages for regular updates.</li>
+									</ul>
+									<h3 style="font-weight: bold; text-align: left;">RESULT:</h3>
+									<ul style="text-align: left;">
+									  <li>This streamlined workflow ensured data quality and availability, significantly enhancing the efficiency of reporting and analysis.</li>
+									</ul>
+								  </header>
+								  
+								  
+								  
+								  
+								  
+								  
+							  
+							  <div style="display: flex; justify-content: center;">
+
+								<a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/SQL/ETL" target="_blank" class="image main"><img src="images/ETL-sqlserver.png" alt="" /></a>
+							  </div>
+							  <br>
+							  <br>
+							  <br>
+					  
+								<ul class="actions special">
+								  <li><a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/SQL/ETL" target="_blank" class="button">View Project</a></li>
+							  </ul>
+			
+			
+							  
+							  <!-- Footer -->
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+							  <br>
+
+
+							  <section class="split contact">
+								<section class="alt">
+								  <h3 style="text-align: left;">Location</h3>
+								  <p>Philippines, Iloilo City<br /></p>
+								</section>
+								<section>
+								  <h3 style="text-align: left;">Mobile number</h3>
+								  <p><a href="#">+639983369301</a></p>
+								</section>
+								<section>
+								  <h3 style="text-align: left;">Email</h3>
+								  <p><a href="#">allen.arorong23@gmail.com</a></p>
+								</section>
+								<section>
+								  <h3 style="text-align: left;">Social</h3>
+								  <ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
+									<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
+								  </ul>
+								</section>
+							  </section>
+							  </footer>
+							  
+
+		<!-- Copyright -->
+			<div id="copyright">
+				<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+			</div>
+
+	</div>
+
+<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html><!DOCTYPE HTML>
