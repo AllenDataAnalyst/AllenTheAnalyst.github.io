@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Covid-19 Data Exploration in SQL Server | Allen Arorong</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+nav a:hover{color:var(--accent)}
+
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s ease;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 20px 35px rgba(0,0,0,.35);
+}
+
+.card h3{
+    margin-top:0;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.stack span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.content{
+    max-width:1050px;
+    margin:auto;
+    background:var(--card);
+    padding:35px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.content h2{
+    text-align:left;
+    margin-top:35px;
+    font-size:28px;
+}
+
+.content h2:first-child{
+    margin-top:0;
+}
+
+.content p,
+.content li{
+    color:var(--muted);
+}
+
+.workflow{
+    max-width:1050px;
+    margin:30px auto 0;
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:14px;
+    padding:24px;
+    color:var(--muted);
+}
+
+.workflow strong{
+    color:#fff;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:54px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Covid-19 Data Exploration in SQL Server</h1>
+    <div class="subtitle">SQL Data Exploration Case Study</div>
+
+    <p>
+        SQL Server data exploration project focused on analyzing Covid-19 trends,
+        case counts, deaths, population impact, vaccination progress, and country level patterns.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#overview">Project Overview</a>
+        <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/SQL/SQL%20(python)/Data%20Exploration%20Covid%2019%20in%20SQL%20%20SERVER%20(%20python).ipynb"
+           target="_blank">
+            View GitHub Notebook
+        </a>
+        <a class="btn secondary" href="index.html#sql">Back to SQL Projects</a>
+    </div>
+
+    <div class="stack">
+        <span>SQL Server</span>
+        <span>T-SQL</span>
+        <span>Data Exploration</span>
+        <span>Joins</span>
+        <span>Aggregations</span>
+        <span>Window Functions</span>
+    </div>
+</section>
+
+<section id="overview">
+    <h2>Project Overview</h2>
+
+    <p class="section-intro">
+        This project demonstrates how SQL Server can be used to explore large public health datasets,
+        calculate meaningful metrics, compare countries, and uncover pandemic related trends.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Trend Analysis</h3>
+            <p>Analyzed Covid-19 cases, deaths, vaccination progress, and timeline based changes.</p>
+        </div>
+
+        <div class="card">
+            <h3>Country Comparison</h3>
+            <p>Compared infection rates, death rates, and population impact across countries and regions.</p>
+        </div>
+
+        <div class="card">
+            <h3>SQL Analytics</h3>
+            <p>Used joins, aggregations, filtering, calculations, and window functions for deeper analysis.</p>
+        </div>
+    </div>
+</section>
+<section id="case-study">
+
+    <div class="content">
+
+        <h2>Business Problem</h2>
+
+        <p>
+            Covid-19 data contains large volumes of country level, date based records.
+            Without proper SQL exploration, it can be difficult to understand infection trends,
+            death rates, vaccination progress, and population impact across different regions.
+        </p>
+
+        <h2>Solution</h2>
+
+        <p>
+            I used SQL Server to explore Covid-19 datasets by joining related tables,
+            calculating key metrics, comparing countries, and identifying trends over time.
+            The project demonstrates how SQL can be used to transform raw public health data
+            into meaningful insights.
+        </p>
+
+        <h2>SQL Exploration Workflow</h2>
+
+        <div class="workflow">
+            <strong>Workflow</strong><br><br>
+            Raw Covid-19 Data<br>
+            ↓<br>
+            SQL Server Import<br>
+            ↓<br>
+            Join Deaths and Vaccination Tables<br>
+            ↓<br>
+            Calculate Infection and Death Rates<br>
+            ↓<br>
+            Compare Countries and Continents<br>
+            ↓<br>
+            Analyze Vaccination Progress<br>
+            ↓<br>
+            Create Insight Ready Queries
+        </div>
+
+        <h2>SQL Techniques Used</h2>
+
+        <ul>
+            <li>SELECT statements and filtering</li>
+            <li>JOIN operations across related Covid-19 tables</li>
+            <li>Aggregations using SUM, MAX, and GROUP BY</li>
+            <li>Calculated fields for infection rate and death percentage</li>
+            <li>Window functions for rolling vaccination totals</li>
+            <li>Common Table Expressions</li>
+            <li>Temporary tables</li>
+            <li>Views for reusable reporting queries</li>
+            <li>Country and continent level comparisons</li>
+        </ul>
+
+        <h2>Key Insights Explored</h2>
+
+        <ul>
+            <li>Countries with the highest infection rates</li>
+            <li>Countries with the highest death counts</li>
+            <li>Death percentage by location and date</li>
+            <li>Population percentage infected</li>
+            <li>Vaccination progress over time</li>
+            <li>Global case and death trends</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Business Value</h2>
+
+    <p class="section-intro">
+        This project shows how SQL can be used to explore large datasets,
+        calculate meaningful business metrics, and prepare analysis ready outputs.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Better Data Understanding</h3>
+            <p>
+                Converts raw public health data into clear trends, rates, and comparison metrics.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reusable SQL Logic</h3>
+            <p>
+                Uses views, CTEs, and queries that can support repeatable analysis and reporting.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reporting Ready Output</h3>
+            <p>
+                Creates SQL outputs that can be used for dashboards, reports, and further analysis.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Technology Stack</h2>
+
+    <p class="section-intro">
+        Technologies and SQL concepts used throughout this data exploration project.
+    </p>
+
+    <div class="stack">
+        <span>SQL Server</span>
+        <span>T-SQL</span>
+        <span>Joins</span>
+        <span>Aggregations</span>
+        <span>CTEs</span>
+        <span>Window Functions</span>
+        <span>Views</span>
+        <span>Data Exploration</span>
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Project Resources</h2>
+
+    <p class="section-intro">
+        Explore the complete notebook and SQL implementation on GitHub.
+    </p>
+
+    <div class="btns">
+
+        <a class="btn"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/SQL/SQL%20(python)/Data%20Exploration%20Covid%2019%20in%20SQL%20%20SERVER%20(%20python).ipynb"
+           target="_blank">
+            💻 View GitHub Notebook
+        </a>
+
+        <a class="btn secondary"
+           href="index.html#sql">
+            View More SQL Projects
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

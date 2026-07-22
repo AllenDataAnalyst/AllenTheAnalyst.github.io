@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Online Library Management System | Allen Arorong</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s ease;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 20px 35px rgba(0,0,0,.35);
+}
+
+.card h3{
+    margin-top:0;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.stack span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.content{
+    max-width:1050px;
+    margin:auto;
+    background:var(--card);
+    padding:35px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.content h2{
+    text-align:left;
+    margin-top:35px;
+    font-size:28px;
+}
+
+.content h2:first-child{
+    margin-top:0;
+}
+
+.content p,
+.content li{
+    color:var(--muted);
+}
+
+.preview{
+    max-width:1100px;
+    margin:35px auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview iframe{
+    width:100%;
+    height:900px;
+    border:0;
+    display:block;
+    background:#fff;
+}
+
+.workflow{
+    max-width:1050px;
+    margin:30px auto 0;
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:14px;
+    padding:24px;
+    color:var(--muted);
+}
+
+.workflow strong{
+    color:#fff;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:54px 22px;
+    }
+
+    .preview iframe{
+        height:650px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Online Library Management System</h1>
+    <div class="subtitle">SQL Database Design Case Study</div>
+
+    <p>
+        A relational SQL database project designed to manage books, members,
+        borrowing transactions, returns, inventory, and library operations.
+        The system demonstrates database design, normalization, relationships,
+        CRUD operations, and SQL reporting logic.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#overview">System Overview</a>
+        <a class="btn secondary" href="#documentation">View Documentation</a>
+        <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary" href="index.html#sql">Back to SQL Projects</a>
+    </div>
+
+    <div class="stack">
+        <span>SQL Server</span>
+        <span>Database Design</span>
+        <span>CRUD</span>
+        <span>Normalization</span>
+        <span>ER Diagram</span>
+        <span>Relational Database</span>
+    </div>
+</section>
+
+<section id="overview">
+    <h2>System Overview</h2>
+
+    <p class="section-intro">
+        The Online Library Management System organizes library operations,
+        manages book inventory, tracks borrowers, and simplifies circulation
+        using a normalized relational database.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>📚 Book Management</h3>
+            <p>Store book details, categories, authors, publishers, availability, and inventory records.</p>
+        </div>
+
+        <div class="card">
+            <h3>👤 Member Management</h3>
+            <p>Maintain member information, registration details, borrowing history, and account records.</p>
+        </div>
+
+        <div class="card">
+            <h3>🔄 Borrow & Return</h3>
+            <p>Track book borrowing, return dates, due dates, transaction status, and availability.</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Reporting</h3>
+            <p>Generate reports for inventory, borrowed books, member activity, and overdue items.</p>
+        </div>
+    </div>
+</section>
+
+<section id="documentation">
+    <h2>Project Documentation</h2>
+
+    <p class="section-intro">
+        The complete documentation includes the database design, system flow,
+        user interface, SQL implementation, testing, and project methodology.
+    </p>
+
+    <div class="workflow">
+        <strong>Documentation Includes</strong><br><br>
+        ✔ Database Design<br>
+        ✔ SQL Tables<br>
+        ✔ ER Diagram<br>
+        ✔ User Interface Screenshots<br>
+        ✔ System Flow<br>
+        ✔ Testing<br>
+        ✔ Final Documentation
+    </div>
+
+    <div class="preview">
+        <iframe src="images/Allen_Arorong_DSA_Master_Class_Project.pdf"></iframe>
+    </div>
+
+    <div class="btns">
+        <a class="btn"
+           href="images/Allen_Arorong_DSA_Master_Class_Project.pdf"
+           target="_blank">
+            📄 Open Full Documentation
+        </a>
+
+        <a class="btn secondary"
+           href="images/Allen_Arorong_DSA_Master_Class_Project.pdf"
+           download>
+            ⬇ Download PDF
+        </a>
+    </div>
+</section>
+<section>
+    <h2>Database Architecture</h2>
+
+    <p class="section-intro">
+        The system follows a relational database structure where books,
+        members, borrowing transactions, returns, and inventory records
+        are organized into connected tables.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Books Table</h3>
+            <p>
+                Stores book details such as title, author, category, publisher,
+                ISBN, quantity, and availability.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Members Table</h3>
+            <p>
+                Stores member information such as member ID, name, contact details,
+                registration date, and membership status.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Borrowing Table</h3>
+            <p>
+                Tracks borrowed books, borrow dates, due dates, return dates,
+                and transaction status.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Inventory Logic</h3>
+            <p>
+                Updates book availability based on borrowing and return transactions.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Project Highlights</h2>
+
+    <p class="section-intro">
+        Key features implemented in the Online Library Management System.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>📚 Library Inventory</h3>
+            <p>
+                Manage books, categories, authors, publishers, and available copies.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>👤 Member Records</h3>
+            <p>
+                Register members, maintain borrower profiles, and manage borrowing history.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🔄 Borrowing Process</h3>
+            <p>
+                Track borrowing, returns, due dates, and book availability.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📊 SQL Reporting</h3>
+            <p>
+                Generate reports for inventory, borrowed books, overdue books,
+                and member activity.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="case-study">
+    <div class="content">
+        <h2>Business Problem</h2>
+
+        <p>
+            A library needs a structured way to manage books, members,
+            borrowing transactions, returns, and inventory availability.
+            Without a proper database, records can become inconsistent,
+            manual tracking becomes time consuming, and reporting becomes difficult.
+        </p>
+
+        <h2>Solution</h2>
+
+        <p>
+            I designed a relational SQL database that organizes the main library
+            operations into separate normalized tables. The system allows library
+            staff to manage book records, track member activity, monitor borrowed
+            and returned books, and generate reports using SQL queries.
+        </p>
+
+        <h2>Database Design</h2>
+
+        <p>
+            The database was designed using relational database principles.
+            Each major business entity is stored in its own table, with relationships
+            connecting books, members, and transaction records.
+        </p>
+
+        <ul>
+            <li>Books are stored separately from borrowing records.</li>
+            <li>Members are stored separately from transaction history.</li>
+            <li>Borrowing and return activity are tracked through transaction tables.</li>
+            <li>Primary keys identify unique records.</li>
+            <li>Foreign keys connect related records across tables.</li>
+            <li>Normalized table design reduces duplicate data.</li>
+        </ul>
+
+        <h2>SQL Features Demonstrated</h2>
+
+        <ul>
+            <li>Database creation</li>
+            <li>Table creation</li>
+            <li>Primary keys and foreign keys</li>
+            <li>Relational table design</li>
+            <li>CRUD operations</li>
+            <li>JOIN queries</li>
+            <li>Filtering and searching records</li>
+            <li>Inventory availability tracking</li>
+            <li>Borrowing and return transaction logic</li>
+            <li>Basic reporting queries</li>
+        </ul>
+                <h2>Sample SQL Workflow</h2>
+
+        <p>
+            The system follows a simple operational flow from member registration,
+            book catalog setup, borrowing transaction, return processing, and reporting.
+        </p>
+
+        <ul>
+            <li>Add new books into the catalog.</li>
+            <li>Register library members.</li>
+            <li>Record borrowed books.</li>
+            <li>Update book availability.</li>
+            <li>Record returned books.</li>
+            <li>Generate reports for inventory and member activity.</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>Business Value</h2>
+
+    <p class="section-intro">
+        This project demonstrates how a relational SQL database can help organize records,
+        reduce manual tracking, and support accurate reporting for library operations.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Cleaner Data Structure</h3>
+            <p>
+                Organizes books, members, transactions, and inventory into separate related tables.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Better Record Tracking</h3>
+            <p>
+                Tracks borrowing, returns, availability, and member activity more accurately.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reporting Ready</h3>
+            <p>
+                Supports SQL queries for inventory reports, borrowed books, overdue items, and member history.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Technology Stack</h2>
+
+    <p class="section-intro">
+        Tools and concepts used in this SQL database design project.
+    </p>
+
+    <div class="stack">
+        <span>SQL Server</span>
+        <span>Relational Database</span>
+        <span>Database Design</span>
+        <span>Normalization</span>
+        <span>Primary Keys</span>
+        <span>Foreign Keys</span>
+        <span>CRUD</span>
+        <span>JOIN Queries</span>
+        <span>Reporting Queries</span>
+    </div>
+</section>
+
+<section>
+    <h2>Need a Similar Database Project?</h2>
+
+    <p class="section-intro">
+        I can help design SQL databases, build reporting tables, create Power BI dashboards,
+        and automate data workflows for business reporting.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="index.html#sql">View More SQL Projects</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

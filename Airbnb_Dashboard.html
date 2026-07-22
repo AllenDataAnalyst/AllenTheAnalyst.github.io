@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Airbnb Tableau Dashboard | Allen Arorong</title>
+
+<style>
+:root{
+--bg:#0f172a;
+--panel:#111827;
+--card:#1f2937;
+--card2:#172033;
+--accent:#18bfef;
+--text:#e5e7eb;
+--muted:#cbd5e1;
+--soft:#94a3b8;
+--border:#334155;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(17,24,39,.95);
+padding:16px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+}
+
+.logo a{
+color:white;
+text-decoration:none;
+font-weight:800;
+}
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:700;
+font-size:14px;
+white-space:nowrap;
+}
+
+nav a:hover{color:var(--accent)}
+
+.hero{
+padding:95px 40px 80px;
+text-align:center;
+background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+font-size:48px;
+margin:0;
+}
+
+.hero .subtitle{
+font-size:22px;
+font-weight:800;
+color:var(--accent);
+margin-top:18px;
+}
+
+.hero p{
+max-width:900px;
+margin:22px auto;
+font-size:19px;
+color:var(--muted);
+}
+
+.btns{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:14px;
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+background:var(--accent);
+color:#000;
+padding:14px 24px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.btn.secondary{
+background:transparent;
+border:1px solid var(--accent);
+color:white;
+}
+
+section{
+padding:70px 40px;
+}
+
+section:nth-of-type(even){
+background:#111827;
+}
+
+h2{
+text-align:center;
+font-size:36px;
+margin:0 0 12px;
+}
+
+.section-intro{
+max-width:900px;
+margin:auto auto 34px;
+text-align:center;
+color:var(--muted);
+font-size:18px;
+}
+
+.preview{
+max-width:1100px;
+margin:auto;
+background:var(--card);
+border-radius:14px;
+overflow:hidden;
+border:1px solid var(--border);
+box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview iframe{
+width:100%;
+height:760px;
+border:0;
+display:block;
+background:#0b1220;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1050px;
+margin:30px auto;
+}
+
+.card{
+background:var(--card);
+padding:24px;
+border-radius:14px;
+border:1px solid var(--border);
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
+box-shadow:0 18px 34px rgba(0,0,0,.35);
+}
+
+.card h3{
+color:var(--accent);
+margin-top:0;
+}
+
+.card p{
+color:var(--muted);
+}
+
+.content-box{
+max-width:1050px;
+margin:auto;
+background:var(--card);
+padding:35px;
+border-radius:14px;
+border:1px solid var(--border);
+}
+
+.content-box h2{
+text-align:left;
+font-size:28px;
+margin-top:30px;
+}
+
+.content-box h2:first-child{
+margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+color:var(--muted);
+}
+
+.stack{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+
+.stack.center{
+justify-content:center;
+max-width:1000px;
+margin:28px auto 0;
+}
+
+.stack span{
+background:#334155;
+padding:8px 14px;
+border-radius:20px;
+font-size:13px;
+}
+
+footer{
+padding:40px;
+text-align:center;
+background:#111827;
+color:#94a3b8;
+border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+header{
+flex-direction:column;
+gap:14px;
+padding:16px 20px;
+}
+
+nav{
+width:100%;
+overflow-x:auto;
+justify-content:flex-start;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+section{
+padding:55px 22px;
+}
+
+.preview iframe{
+height:540px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+<a href="index.html">Allen Arorong</a>
+</div>
+
+<nav>
+<a href="index.html#solutions">Analytics Solutions</a>
+<a href="index.html#powerbi">Power BI</a>
+<a href="index.html#sql">SQL</a>
+<a href="index.html#automation">AI Automation</a>
+<a href="index.html#about">About</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Airbnb Tableau Dashboard</h1>
+
+<div class="subtitle">
+Tableau Case Study
+</div>
+
+<p>
+Interactive Tableau dashboard built to analyze Airbnb market data,
+pricing patterns,
+listing performance,
+revenue trends,
+and location based rental insights.
+</p>
+
+<div class="btns">
+<a class="btn" href="#overview">Project Overview</a>
+<a class="btn secondary" href="#live-demo">Live Dashboard</a>
+<a class="btn secondary"
+href="https://public.tableau.com/app/profile/allen7159/viz/AirBnbFullProject_16739721624690/Dashboard1?publish=yes"
+target="_blank">
+Open Tableau Public
+</a>
+<a class="btn secondary" href="Tableau.html">Back to Tableau Projects</a>
+</div>
+
+<div class="stack center">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Airbnb Analytics</span>
+<span>Market Analysis</span>
+<span>Pricing Insights</span>
+<span>Data Visualization</span>
+</div>
+</section>
+
+<section id="overview">
+<h2>Project Overview</h2>
+
+<p class="section-intro">
+This Tableau dashboard analyzes Airbnb listing data to help users understand pricing,
+property distribution,
+market trends,
+and location based rental performance.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Rental Market Analysis</h3>
+<p>Analyze Airbnb listing data, pricing patterns, and market performance.</p>
+</div>
+
+<div class="card">
+<h3>Location Insights</h3>
+<p>Understand how location affects listing price, demand, and rental performance.</p>
+</div>
+
+<div class="card">
+<h3>Pricing Trends</h3>
+<p>Compare pricing behavior across listings, areas, bedrooms, and property types.</p>
+</div>
+</div>
+</section>
+
+<section id="live-demo">
+<h2>Try the Dashboard Live</h2>
+
+<p class="section-intro">
+Interact with the Airbnb Tableau dashboard directly below.
+</p>
+
+<div class="preview">
+<iframe
+src="https://public.tableau.com/views/AirBnbFullProject_16739721624690/Dashboard1?:showVizHome=no&:embed=true"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="btns">
+<a class="btn"
+href="https://public.tableau.com/app/profile/allen7159/viz/AirBnbFullProject_16739721624690/Dashboard1?publish=yes"
+target="_blank">
+🚀 Open Full Screen Dashboard
+</a>
+</div>
+</section>
+<section>
+<div class="content-box">
+<h2>Business Problem</h2>
+<p>
+Airbnb market data can be difficult to understand when listings,
+prices,
+bedroom counts,
+locations,
+and revenue patterns are spread across a large dataset.
+</p>
+
+<p>
+Users need a clear dashboard to understand which areas perform well,
+how prices vary by location,
+and what patterns exist across the short term rental market.
+</p>
+
+<h2>Solution</h2>
+<p>
+I created an interactive Tableau dashboard that visualizes Airbnb listings,
+pricing trends,
+location based performance,
+and property level insights.
+The dashboard helps users explore rental market behavior and identify important patterns.
+</p>
+
+<h2>Key Features</h2>
+<ul>
+<li>Airbnb listing performance analysis</li>
+<li>Average price by location</li>
+<li>Bedroom and property type comparison</li>
+<li>Revenue and pricing trend visualization</li>
+<li>Interactive Tableau filters</li>
+<li>Location based market insights</li>
+<li>Clean dashboard layout for business users</li>
+</ul>
+
+<h2>Tools Used</h2>
+<div class="stack">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Data Visualization</span>
+<span>Airbnb Analytics</span>
+<span>Market Analysis</span>
+<span>Dashboard Design</span>
+</div>
+
+<h2>Business Value</h2>
+<p>
+This dashboard helps users understand Airbnb market performance,
+compare pricing across locations,
+identify rental trends,
+and support better decision making using interactive visual analytics.
+</p>
+</div>
+</section>
+
+<section>
+<h2>Dashboard Highlights</h2>
+
+<p class="section-intro">
+Key areas this Tableau dashboard helps users analyze.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Pricing Insights</h3>
+<p>
+Compare listing prices across locations,
+bedrooms,
+and market segments.
+</p>
+</div>
+
+<div class="card">
+<h3>Location Performance</h3>
+<p>
+Identify which neighborhoods or areas show stronger rental performance.
+</p>
+</div>
+
+<div class="card">
+<h3>Market Trends</h3>
+<p>
+Understand short term rental trends through interactive visual analysis.
+</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Technology Stack</h2>
+
+<p class="section-intro">
+Tools and concepts used in this Tableau project.
+</p>
+
+<div class="stack center">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Airbnb Data</span>
+<span>Market Analysis</span>
+<span>Pricing Analytics</span>
+<span>Maps</span>
+<span>Interactive Filters</span>
+<span>Business Intelligence</span>
+</div>
+</section>
+
+<section>
+<h2>Need a Similar Dashboard?</h2>
+
+<p class="section-intro">
+I can help build Tableau dashboards,
+Power BI reports,
+SQL datasets,
+and automation workflows for business reporting.
+</p>
+
+<div class="btns">
+<a class="btn" href="index.html#contact">Contact Me</a>
+<a class="btn secondary" href="Tableau.html">View More Tableau Projects</a>
+</div>
+</section>
+
+<footer>
+Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

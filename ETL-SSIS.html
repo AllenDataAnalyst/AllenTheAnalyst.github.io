@@ -1,148 +1,529 @@
-<!DOCTYPE HTML>
-<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SQL Server ETL Pipeline with SSIS | Allen Arorong</title>
 
--->
-<html>
-	<head>
-		<title>Data Analyst Project Profile</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-				<article id="generic">
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Allen The Analyst</a>
-					</header>
+*{box-sizing:border-box}
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul class="links">
-						<li><a href="About ME.html">About Me</a></li>
-						<li><li><a href="index.html">Projects</a></li>
-						<li class="active"><a href="SQL.html">SQL</a></li>						
-						<li><a href="Python.html">PYTHON</a></li>
-						<li><a href="Power BI.html">Power BI</a></li>
-						<li><a href="Tableau.html">TABLEAU</a></li>
-						<li><a href="EXCEL.html">EXCEL</a></li>
-						<li><a href="Looker_studio.html">LOOKER</a></li>
-						
-					</ul>
-					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-								<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-					</ul>
-				</nav>
+html{scroll-behavior:smooth}
 
-				<!-- Main -->
-					<div id="main">
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
 
-						<!-- Post -->
-						<section class="post">
-							<header class="major">
-								<h1>Developing ETL pipelines with SSIS (SQL Server Integration Services) </h1>
-								<video src="Video/SSIS_Video.mp4" autoplay loop muted class="image fit">
-									Your browser does not support the video tag.
-								  </video>								  
-								<p>To improve data integration and reporting efficiency, I needed to create a robust ETL process for loading data into the SQL Server database.</p>
-								<header class="major">
-									<h3 style="font-weight: bold; text-align: left;">TASK:</h3>
-									<ul style="text-align: left;">
-									  <li> I developed two SSIS packages: STG_FCT_PRODUCT_SALES for staging data and FCT_PRODUCT_SALES for transferring data to the final table.</li>
-									  
-									</ul>
-									<h3 style="font-weight: bold; text-align: left;">ACTION:</h3>
-									<ul style="text-align: left;">
-									  <li>In the STG_FCT_PRODUCT_SALES package, I set up a Connection Manager for the source files, created a variable to make the source dynamic, and used an Execute SQL Task to truncate the staging table. I implemented a Foreach Loop Container to dynamically iterate over the source files and added a Data Flow Task to transfer data to the SQL Server database. After processing, I moved the files to a loaded folder to confirm successful execution.</li>
-									  <li>In the FCT_PRODUCT_SALES package, I added an Execute SQL Task to delete existing data to avoid duplication using the query:
-										DELETE FROM [dbo].[FCT_PRODUCT_SALES]
-										WHERE ORDER_ID IN (SELECT DISTINCT ORDER_ID FROM [dbo].[STG_FCT_PRODUCT_SALES]);
-										I also added a Data Flow Task using OLE DB connections to move data from the staging table to the FCT_PRODUCT_SALES table. Additionally, I configured SQL Server Agent to schedule the packages for regular updates.</li>
-									</ul>
-									<h3 style="font-weight: bold; text-align: left;">RESULT:</h3>
-									<ul style="text-align: left;">
-									  <li>This streamlined workflow ensured data quality and availability, significantly enhancing the efficiency of reporting and analysis.</li>
-									</ul>
-								  </header>
-								  
-								  
-								  
-								  
-								  
-								  
-							  
-							  <div style="display: flex; justify-content: center;">
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
 
-								<a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/SQL/ETL" target="_blank" class="image main"><img src="images/ETL-sqlserver.png" alt="" /></a>
-							  </div>
-							  <br>
-							  <br>
-							  <br>
-					  
-								<ul class="actions special">
-								  <li><a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/SQL/ETL" target="_blank" class="button">View Project</a></li>
-							  </ul>
-			
-			
-							  
-							  <!-- Footer -->
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
 
+nav{
+    display:flex;
+    gap:20px;
+}
 
-							  <section class="split contact">
-								<section class="alt">
-								  <h3 style="text-align: left;">Location</h3>
-								  <p>Philippines, Iloilo City<br /></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Mobile number</h3>
-								  <p><a href="#">+639983369301</a></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Email</h3>
-								  <p><a href="#">allen.arorong23@gmail.com</a></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Social</h3>
-								  <ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-								  </ul>
-								</section>
-							  </section>
-							  </footer>
-							  
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
 
-		<!-- Copyright -->
-			<div id="copyright">
-				<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-			</div>
+nav a:hover{color:var(--accent)}
 
-	</div>
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
 
-<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    font-size:21px;
+    font-weight:800;
+    color:var(--accent);
+    margin-top:18px;
+}
+
+.hero p{
+    max-width:880px;
+    margin:20px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:28px;
+}
+
+.btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn.secondary{
+    background:transparent;
+    color:#fff;
+    border:1px solid var(--accent);
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.preview{
+    max-width:1100px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview video{
+    width:100%;
+    min-height:500px;
+    object-fit:cover;
+    display:block;
+    background:#0b1220;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1050px;
+    margin:30px auto 0;
+}
+
+.card{
+    background:var(--card);
+    padding:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.card h3{
+    margin:0 0 10px;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.content-box{
+    max-width:1050px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:30px;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.content-box h2{
+    text-align:left;
+    font-size:28px;
+    margin-top:28px;
+}
+
+.content-box h2:first-child{
+    margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+}
+
+.stack.center{
+    justify-content:center;
+    max-width:1050px;
+    margin:26px auto 0;
+}
+
+.stack span{
+    background:#334155;
+    color:#e5e7eb;
+    padding:8px 12px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.pipeline{
+    max-width:1100px;
+    margin:35px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+    align-items:center;
+}
+
+.step{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.step h3{
+    color:var(--accent);
+    margin:0 0 8px;
+}
+
+.step p{
+    color:var(--muted);
+    margin:0;
+}
+
+.workflow{
+    max-width:1050px;
+    margin:30px auto 0;
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:14px;
+    padding:24px;
+    color:var(--muted);
+}
+
+.workflow strong{
+    color:#fff;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:var(--soft);
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:54px 22px;
+    }
+
+    .preview video{
+        min-height:260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo"><a href="index.html">Allen Arorong</a></div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>SQL Server ETL Pipeline with SSIS</h1>
+    <div class="subtitle">SQL Server & Data Engineering Case Study</div>
+
+    <p>
+        ETL pipeline project using SQL Server Integration Services to extract,
+        transform, validate, and load data into reporting databases for analytics and Power BI reporting.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#video-demo">Watch Demo</a>
+        <a class="btn secondary" href="#workflow">ETL Workflow</a>
+        <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary" href="index.html#sql">Back to SQL Projects</a>
+    </div>
+
+    <div class="stack center">
+        <span>SSIS</span>
+        <span>SQL Server</span>
+        <span>ETL</span>
+        <span>Data Pipeline</span>
+        <span>SSMS</span>
+        <span>SQL Agent</span>
+        <span>Power BI</span>
+    </div>
+</section>
+
+<section id="video-demo">
+    <h2>ETL Pipeline Walkthrough</h2>
+
+    <p class="section-intro">
+        Watch a walkthrough demonstrating the SQL Server Integration Services ETL pipeline,
+        including extraction, transformation, loading, package configuration, and the reporting workflow.
+    </p>
+
+    <div class="preview">
+        <video src="Video/SSIS_Video.mp4" autoplay loop muted playsinline controls></video>
+    </div>
+</section>
+
+<section id="workflow">
+    <h2>ETL Workflow</h2>
+
+    <p class="section-intro">
+        A simplified view of how raw files and source data are prepared for reporting and analytics.
+    </p>
+
+    <div class="pipeline">
+        <div class="step">
+            <h3>1. Source Data</h3>
+            <p>CSV, Excel, or SQL source files</p>
+        </div>
+
+        <div class="step">
+            <h3>2. Staging Tables</h3>
+            <p>Raw data loaded into SQL Server staging</p>
+        </div>
+
+        <div class="step">
+            <h3>3. SSIS Package</h3>
+            <p>Automated extraction, transformation, and loading</p>
+        </div>
+
+        <div class="step">
+            <h3>4. Reporting Tables</h3>
+            <p>Cleaned fact and dimension tables</p>
+        </div>
+
+        <div class="step">
+            <h3>5. Power BI</h3>
+            <p>Dashboards and reporting datasets</p>
+        </div>
+    </div>
+
+    <div class="workflow">
+        <strong>Workflow:</strong>
+        Source Files → SQL Server Staging → SSIS Package → Data Cleaning → Fact & Dimension Tables → Power BI Reporting
+    </div>
+</section>
+<section id="case-study">
+    <div class="content-box">
+        <h2>Business Problem</h2>
+        <p>
+            Business data often comes from multiple files and systems, such as CSV exports,
+            Excel files, and operational databases. Manually importing and cleaning this data
+            can be slow, repetitive, and prone to errors.
+        </p>
+
+        <p>
+            Reporting teams need a repeatable ETL process that can prepare clean and reliable
+            data for SQL reporting, Power BI dashboards, and business analysis.
+        </p>
+
+        <h2>Solution</h2>
+        <p>
+            I developed ETL pipelines using SQL Server Integration Services to automate the process
+            of extracting raw data, loading it into staging tables, applying transformations,
+            validating records, and preparing reporting tables for analytics.
+        </p>
+
+        <h2>ETL Process</h2>
+        <ul>
+            <li>Extracted data from CSV, Excel, or SQL based source files</li>
+            <li>Loaded raw data into SQL Server staging tables</li>
+            <li>Applied transformations and business rules</li>
+            <li>Cleaned and standardized inconsistent values</li>
+            <li>Validated data before loading into reporting tables</li>
+            <li>Created reporting ready fact and dimension tables</li>
+            <li>Prepared clean datasets for Power BI dashboards and SQL reports</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Automated data loading process</li>
+            <li>Staging table design</li>
+            <li>Data type conversion and formatting</li>
+            <li>Duplicate and missing value checks</li>
+            <li>Transformation logic for reporting tables</li>
+            <li>Reusable ETL package structure</li>
+            <li>Reporting ready output for analytics</li>
+        </ul>
+
+        <h2>Tools Used</h2>
+        <div class="stack">
+            <span>SSIS</span>
+            <span>SQL Server</span>
+            <span>SSMS</span>
+            <span>SQL Agent</span>
+            <span>CSV</span>
+            <span>Excel</span>
+            <span>ETL</span>
+            <span>Power BI</span>
+        </div>
+
+        <h2>Project Documentation</h2>
+        <p>
+            View the SQL Server Integration Services project documentation, workflow design,
+            ETL process, and implementation details on GitHub.
+        </p>
+
+        <div class="btns">
+            <a class="btn"
+               href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/SQL/ETL"
+               target="_blank">
+                View ETL Documentation
+            </a>
+        </div>
+
+        <h2>Business Value</h2>
+        <p>
+            This ETL process helps reduce manual data preparation, improves reporting consistency,
+            increases data quality, and gives business users cleaner datasets for dashboards and analytics.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>ETL Pipeline Benefits</h2>
+
+    <p class="section-intro">
+        Key benefits of building automated ETL pipelines for business reporting.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Reduced Manual Work</h3>
+            <p>
+                Automates repetitive data loading and preparation tasks that would otherwise be done manually.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Improved Data Quality</h3>
+            <p>
+                Applies validation, cleaning, and transformation rules before data is used for reporting.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reliable Reporting</h3>
+            <p>
+                Creates consistent reporting tables that can be used by Power BI, SQL reports, and business users.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Need a Similar ETL Pipeline?</h2>
+
+    <p class="section-intro">
+        I can help build SQL Server ETL pipelines, reporting tables, Power BI datasets,
+        and automated reporting workflows.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="index.html#sql">View More SQL Projects</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
 
 </body>
-</html><!DOCTYPE HTML>
+</html>

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Sales Dashboard | Looker Studio Case Study | Allen Arorong</title>
+<title>Sales Dashboard | Tableau Case Study | Allen Arorong</title>
 
 <style>
 
@@ -74,240 +74,341 @@ color:var(--accent);
 }
 
 .hero{
+
 padding:95px 40px 80px;
+
 text-align:center;
+
 background:
-linear-gradient(
-135deg,
+
+linear-gradient(135deg,
+
 rgba(15,23,42,.95),
-rgba(30,58,138,.88)
-);
+
+rgba(30,58,138,.88));
+
 }
 
 .hero h1{
+
 font-size:48px;
+
 margin:0;
+
 }
 
 .hero .subtitle{
+
 font-size:22px;
+
 font-weight:800;
+
 color:var(--accent);
+
 margin-top:18px;
+
 }
 
 .hero p{
+
 max-width:900px;
-margin:24px auto;
+
+margin:22px auto;
+
 font-size:19px;
+
 color:var(--muted);
+
 }
 
 .btns{
+
 display:flex;
+
 justify-content:center;
+
 flex-wrap:wrap;
+
 gap:14px;
+
 margin-top:30px;
+
 }
 
 .btn{
+
 display:inline-block;
+
 background:var(--accent);
+
 color:#000;
+
 padding:14px 24px;
+
 text-decoration:none;
+
 border-radius:8px;
+
 font-weight:bold;
+
 }
 
 .btn.secondary{
+
 background:transparent;
+
 border:1px solid var(--accent);
+
 color:white;
+
 }
 
 section{
+
 padding:70px 40px;
+
 }
 
 section:nth-of-type(even){
+
 background:#111827;
+
 }
 
 h2{
+
 text-align:center;
+
 font-size:36px;
+
 margin:0 0 12px;
+
 }
 
 .section-intro{
+
 max-width:900px;
+
 margin:auto auto 34px;
+
 text-align:center;
+
 color:var(--muted);
+
 font-size:18px;
+
 }
 
 .preview{
 
-max-width:1400px;
+max-width:1100px;
 
-margin:40px auto;
+margin:auto;
 
 background:var(--card);
 
-border:1px solid var(--border);
-
 border-radius:14px;
 
-padding:20px;
+overflow:hidden;
+
+border:1px solid var(--border);
 
 box-shadow:0 14px 28px rgba(0,0,0,.22);
 
 }
 
-.iframe-container{
-
-position:relative;
+.preview iframe{
 
 width:100%;
 
-padding-top:62%;
-
-overflow:hidden;
-
-border-radius:10px;
-
-}
-
-.iframe-container iframe{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
+height:760px;
 
 border:0;
+
+display:block;
+
+background:#0b1220;
 
 }
 
 .grid{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
 gap:20px;
+
 max-width:1050px;
+
 margin:30px auto;
+
 }
 
 .card{
+
 background:var(--card);
+
 padding:24px;
+
 border-radius:14px;
+
 border:1px solid var(--border);
+
 transition:.25s;
+
 }
 
 .card:hover{
+
 transform:translateY(-6px);
+
 border-color:var(--accent);
+
 box-shadow:0 18px 34px rgba(0,0,0,.35);
+
 }
 
 .card h3{
+
 color:var(--accent);
+
 margin-top:0;
+
 }
 
 .card p{
+
 color:var(--muted);
+
 }
 
 .content-box{
+
 max-width:1050px;
+
 margin:auto;
+
 background:var(--card);
+
 padding:35px;
+
 border-radius:14px;
+
 border:1px solid var(--border);
+
 }
 
 .content-box h2{
+
 text-align:left;
+
 font-size:28px;
+
 margin-top:30px;
+
 }
 
 .content-box h2:first-child{
+
 margin-top:0;
+
 }
 
 .content-box p,
+
 .content-box li{
+
 color:var(--muted);
+
 }
 
 .stack{
+
 display:flex;
+
 flex-wrap:wrap;
+
 gap:10px;
+
 margin-top:20px;
+
 }
 
 .stack.center{
+
 justify-content:center;
+
 max-width:1000px;
+
 margin:28px auto 0;
+
 }
 
 .stack span{
+
 background:#334155;
+
 padding:8px 14px;
+
 border-radius:20px;
+
 font-size:13px;
+
 }
 
 footer{
+
 padding:40px;
+
 text-align:center;
+
 background:#111827;
+
 color:#94a3b8;
+
 border-top:1px solid var(--border);
+
 }
 
 @media(max-width:850px){
 
 header{
+
 flex-direction:column;
+
 gap:14px;
+
 padding:16px 20px;
+
 }
 
 nav{
+
 width:100%;
+
 overflow-x:auto;
+
 justify-content:flex-start;
+
 }
 
 .hero h1{
+
 font-size:36px;
+
 }
 
 section{
+
 padding:55px 22px;
+
 }
 
-.preview{
-padding:10px;
-}
+.preview iframe{
 
-.iframe-container{
-padding-top:95%;
+height:540px;
+
 }
 
 }
@@ -358,29 +459,32 @@ Sales Dashboard
 
 <div class="subtitle">
 
-Looker Studio Case Study
+Tableau Case Study
 
 </div>
 
 <p>
 
-Interactive Looker Studio dashboard built to monitor sales performance,
-financial KPIs,
-campaign effectiveness,
-product insights,
-and buyer behavior through dynamic reporting.
+Interactive Tableau dashboard built to analyze sales performance,
+identify business trends,
+monitor KPIs,
+and support data driven decision making through interactive visualizations.
 
 </p>
 
 <div class="btns">
 
-<a class="btn" href="#overview">
+<a class="btn"
+
+href="#overview">
 
 Project Overview
 
 </a>
 
-<a class="btn secondary" href="#live-demo">
+<a class="btn secondary"
+
+href="#live-demo">
 
 Live Dashboard
 
@@ -388,19 +492,19 @@ Live Dashboard
 
 <a class="btn secondary"
 
-href="https://lookerstudio.google.com/reporting/6879f9bf-e8f9-40fa-b6ba-b841557f443e"
+href="https://public.tableau.com/app/profile/allen7159/viz/SalesDashboardTab/SalesDashboard"
 
 target="_blank">
 
-Open Looker Studio
+Open Tableau Public
 
 </a>
 
 <a class="btn secondary"
 
-href="Looker_studio.html">
+href="index.html#additional-projects">
 
-Back to Looker Projects
+Back to Portfolio
 
 </a>
 
@@ -408,13 +512,13 @@ Back to Looker Projects
 
 <div class="stack center">
 
-<span>Looker Studio</span>
-
-<span>Sales Analytics</span>
+<span>Tableau</span>
 
 <span>Dashboard Design</span>
 
-<span>KPI Reporting</span>
+<span>Sales Analytics</span>
+
+<span>Data Visualization</span>
 
 <span>Business Intelligence</span>
 
@@ -432,11 +536,10 @@ Project Overview
 
 <p class="section-intro">
 
-This interactive Looker Studio dashboard provides decision makers with a centralized view of sales performance,
-financial KPIs,
-buyer activity,
-campaign effectiveness,
-and product level insights.
+This interactive Tableau dashboard transforms raw sales data into meaningful business insights,
+allowing stakeholders to monitor performance,
+identify trends,
+and make informed decisions.
 
 </p>
 
@@ -446,16 +549,15 @@ and product level insights.
 
 <h3>
 
-Financial KPIs
+Business Performance
 
 </h3>
 
 <p>
 
-Monitor total revenue,
-average revenue,
-orders,
-and customer activity.
+Monitor sales,
+profit,
+and KPI performance through interactive dashboards.
 
 </p>
 
@@ -465,15 +567,15 @@ and customer activity.
 
 <h3>
 
-Campaign Analysis
+Trend Analysis
 
 </h3>
 
 <p>
 
-Evaluate coupon performance,
-discount impact,
-and campaign effectiveness.
+Analyze sales growth,
+seasonality,
+and product performance over time.
 
 </p>
 
@@ -483,16 +585,15 @@ and campaign effectiveness.
 
 <h3>
 
-Interactive Reporting
+Interactive Exploration
 
 </h3>
 
 <p>
 
-Use filters,
-maps,
-charts,
-and scorecards to explore sales performance.
+Allow users to filter,
+drill down,
+and explore sales information dynamically.
 
 </p>
 
@@ -512,21 +613,19 @@ Try the Dashboard Live
 
 <p class="section-intro">
 
-Interact with the Looker Studio dashboard below.
+Interact with the Tableau dashboard directly below.
 
 </p>
 
 <div class="preview">
 
-<div class="iframe-container">
-
 <iframe
-src="https://lookerstudio.google.com/embed/reporting/6879f9bf-e8f9-40fa-b6ba-b841557f443e/page/7icXD"
-allowfullscreen
-sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-forms">
-</iframe>
 
-</div>
+src="https://public.tableau.com/views/SalesDashboardTab/SalesDashboard?:showVizHome=no&:embed=true"
+
+allowfullscreen>
+
+</iframe>
 
 </div>
 
@@ -534,7 +633,7 @@ sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin
 
 <a class="btn"
 
-href="https://lookerstudio.google.com/reporting/6879f9bf-e8f9-40fa-b6ba-b841557f443e"
+href="https://public.tableau.com/app/profile/allen7159/viz/SalesDashboardTab/SalesDashboard"
 
 target="_blank">
 
@@ -547,148 +646,93 @@ target="_blank">
 </section>
 <section>
     <div class="content-box">
-
         <h2>Business Problem</h2>
-
         <p>
-            Sales data can be difficult to monitor when revenue,
-            orders,
-            buyers,
-            product performance,
-            campaign results,
-            and discounts are spread across multiple reports or spreadsheets.
+            Sales data can be difficult to understand when performance is spread across different products,
+            categories, regions, customers, and time periods.
         </p>
 
         <p>
-            Business users need a simple and interactive dashboard that provides a clear view of sales performance,
-            financial metrics,
-            customer activity,
-            and campaign effectiveness.
+            Business users need a clear dashboard that helps them monitor sales performance,
+            identify trends, and understand which areas are driving business results.
         </p>
 
         <h2>Solution</h2>
-
         <p>
-            I created an interactive Looker Studio dashboard that combines key sales metrics into one reporting view.
-            The dashboard helps users track revenue,
-            monitor buyers and orders,
-            analyze campaign performance,
-            and understand product level insights through visual reporting.
+            I created an interactive Tableau dashboard that visualizes sales performance,
+            business trends, and key metrics in a clean and easy to understand layout.
+            The dashboard helps users explore data visually and make faster business decisions.
         </p>
 
         <h2>Key Features</h2>
-
         <ul>
-            <li>Sales revenue KPI tracking</li>
-            <li>Average revenue per sale analysis</li>
-            <li>Order count and buyer count monitoring</li>
-            <li>US sales map visualization</li>
-            <li>Revenue trend analysis using line charts</li>
-            <li>Average revenue comparison using bar charts</li>
-            <li>Product insight using SKU distribution and performance visuals</li>
-            <li>Campaign insight table with coupon codes, sale revenue, discounts, and buyers</li>
-            <li>Heatmap style conditional formatting for campaign analysis</li>
-            <li>Interactive slicers for flexible filtering</li>
+            <li>Sales performance overview</li>
+            <li>Interactive dashboard filters</li>
+            <li>Trend analysis over time</li>
+            <li>Product and category performance insights</li>
+            <li>Regional or segment based analysis</li>
+            <li>Clean dashboard design for business users</li>
         </ul>
 
         <h2>Tools Used</h2>
-
         <div class="stack">
-            <span>Looker Studio</span>
-            <span>Sales Analytics</span>
-            <span>KPI Reporting</span>
-            <span>Dashboard Design</span>
+            <span>Tableau</span>
+            <span>Tableau Public</span>
             <span>Data Visualization</span>
+            <span>Sales Analytics</span>
+            <span>Dashboard Design</span>
             <span>Business Intelligence</span>
         </div>
 
         <h2>Business Value</h2>
-
         <p>
-            This dashboard helps business users quickly understand sales performance,
-            identify product and campaign trends,
-            monitor financial KPIs,
-            and make better decisions using interactive reporting.
+            This dashboard helps users quickly understand sales performance,
+            identify business trends, compare performance across categories,
+            and support better decision making through interactive visual analytics.
         </p>
-
     </div>
 </section>
 
 <section>
     <h2>Dashboard Highlights</h2>
-
     <p class="section-intro">
-        Key areas this Looker Studio dashboard helps users analyze.
+        Key areas this Tableau dashboard helps business users analyze.
     </p>
 
     <div class="grid">
-
         <div class="card">
             <h3>Sales Performance</h3>
             <p>
-                Monitor revenue,
-                orders,
-                buyers,
-                and average revenue in one interactive dashboard.
+                Monitor key sales metrics and understand performance across different business areas.
             </p>
         </div>
 
         <div class="card">
-            <h3>Product Insights</h3>
+            <h3>Trend Visibility</h3>
             <p>
-                Analyze SKU distribution,
-                product performance,
-                and sales contribution by product.
+                Identify sales trends, performance movement, and possible seasonal patterns over time.
             </p>
         </div>
 
         <div class="card">
-            <h3>Campaign Insights</h3>
+            <h3>Business Insights</h3>
             <p>
-                Evaluate coupon codes,
-                discounts,
-                buyer activity,
-                and campaign performance using visual tables.
+                Turn raw sales data into visual insights that support faster and more informed decisions.
             </p>
         </div>
-
-    </div>
-</section>
-
-<section>
-    <h2>Technology Stack</h2>
-
-    <p class="section-intro">
-        Tools and concepts used in this Looker Studio dashboard project.
-    </p>
-
-    <div class="stack center">
-        <span>Looker Studio</span>
-        <span>Scorecards</span>
-        <span>Slicers</span>
-        <span>Line Charts</span>
-        <span>Bar Charts</span>
-        <span>Maps</span>
-        <span>Tables</span>
-        <span>Heatmap Formatting</span>
-        <span>Sales Reporting</span>
-        <span>Business Intelligence</span>
     </div>
 </section>
 
 <section>
     <h2>Need a Similar Dashboard?</h2>
-
     <p class="section-intro">
-        I can help build Looker Studio dashboards,
-        Power BI reports,
-        SQL datasets,
+        I can help build Tableau dashboards, Power BI reports, SQL datasets,
         and automation workflows for business reporting.
     </p>
 
     <div class="btns">
         <a class="btn" href="index.html#contact">Contact Me</a>
-        <a class="btn secondary" href="Looker_studio.html">View More Looker Projects</a>
+        <a class="btn secondary" href="Tableau.html">View More Tableau Projects</a>
     </div>
 </section>
 

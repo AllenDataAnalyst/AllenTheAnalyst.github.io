@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Financial Statistics Dashboard | Excel Dashboard | Allen Arorong</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --border:#334155;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+nav a:hover{color:var(--accent)}
+
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.preview{
+    max-width:1100px;
+    margin:35px auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview video{
+    width:100%;
+    min-height:460px;
+    object-fit:cover;
+    display:block;
+    background:#0b1220;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1050px;
+    margin:30px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 18px 34px rgba(0,0,0,.35);
+}
+
+.card h3{
+    color:var(--accent);
+    margin-top:0;
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.content-box{
+    max-width:1050px;
+    margin:auto;
+    background:var(--card);
+    padding:35px;
+    border-radius:14px;
+    border:1px solid var(--border);
+}
+
+.content-box h2{
+    text-align:left;
+    font-size:28px;
+    margin-top:30px;
+}
+
+.content-box h2:first-child{
+    margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.stack.center{
+    justify-content:center;
+    max-width:1000px;
+    margin:28px auto 0;
+}
+
+.stack span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.note{
+    max-width:900px;
+    margin:25px auto 0;
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:14px;
+    padding:20px;
+    color:var(--muted);
+}
+
+.note strong{
+    color:var(--accent);
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:55px 22px;
+    }
+
+    .preview video{
+        min-height:260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Financial Statistics Dashboard</h1>
+    <div class="subtitle">Excel Financial Analysis Case Study</div>
+
+    <p>
+        Interactive Excel dashboard designed to analyze financial statistics,
+        key performance indicators, trends, and business metrics using dynamic reporting visuals.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#overview">Project Overview</a>
+        <a class="btn secondary" href="#video-demo">Watch Demo</a>
+        <a class="btn secondary" href="EXCEL.html">Back to Excel Projects</a>
+    </div>
+
+    <div class="stack center">
+        <span>Excel</span>
+        <span>Financial Analysis</span>
+        <span>Dashboard Design</span>
+        <span>KPI Reporting</span>
+        <span>Pivot Tables</span>
+        <span>Charts</span>
+    </div>
+</section>
+
+<section id="overview">
+    <h2>Project Overview</h2>
+
+    <p class="section-intro">
+        This Excel dashboard provides a visual way to analyze financial statistics,
+        monitor financial performance, and interpret key business indicators.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Financial Metrics</h3>
+            <p>Track key financial statistics and summarize important business performance indicators.</p>
+        </div>
+
+        <div class="card">
+            <h3>Trend Analysis</h3>
+            <p>Analyze financial movement across periods using interactive charts and dashboard visuals.</p>
+        </div>
+
+        <div class="card">
+            <h3>Business Insights</h3>
+            <p>Transform financial data into clear insights that support reporting and decision making.</p>
+        </div>
+    </div>
+</section>
+
+<section id="video-demo">
+    <h2>Video Walkthrough</h2>
+
+    <p class="section-intro">
+        Watch a walkthrough of the Financial Statistics Dashboard and its key features.
+    </p>
+
+    <div class="preview">
+        <video src="Video/Financial_dashboard.mp4" autoplay loop muted playsinline controls></video>
+    </div>
+
+    <div class="btns">
+        <a class="btn" href="Video/Financial_dashboard.mp4" target="_blank">
+            🎥 Open Video Demo
+        </a>
+
+        <a class="btn secondary" href="EXCEL.html">
+            Back to Excel Projects
+        </a>
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong><br><br>
+        If the video preview does not load in the browser, click the
+        <strong>Open Video Demo</strong> button above to view the walkthrough directly.
+    </div>
+</section>
+<section>
+    <div class="content-box">
+
+        <h2>Business Problem</h2>
+        <p>
+            Financial data can be difficult to interpret when KPIs,
+            trends, and statistical metrics are scattered across different worksheets,
+            tables, or manual reports.
+        </p>
+
+        <p>
+            Users need a clear Excel dashboard that helps summarize financial performance,
+            monitor trends, and provide quick visibility into important business indicators.
+        </p>
+
+        <h2>Solution</h2>
+        <p>
+            I created an Excel Financial Statistics Dashboard that organizes financial data
+            into a clean and interactive reporting view. The dashboard helps users analyze
+            key metrics, compare performance, and understand financial trends more efficiently.
+        </p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Financial KPI summary</li>
+            <li>Trend analysis using charts</li>
+            <li>Interactive dashboard layout</li>
+            <li>Financial statistics monitoring</li>
+            <li>Business performance comparison</li>
+            <li>Clear visual reporting for decision makers</li>
+        </ul>
+
+        <h2>Tools Used</h2>
+        <div class="stack">
+            <span>Excel</span>
+            <span>Pivot Tables</span>
+            <span>Charts</span>
+            <span>Formulas</span>
+            <span>Conditional Formatting</span>
+            <span>Financial Analysis</span>
+        </div>
+
+        <h2>Business Value</h2>
+        <p>
+            This dashboard helps users understand financial performance faster,
+            reduce manual reporting effort, and make better decisions using
+            clear Excel based financial analytics.
+        </p>
+
+    </div>
+</section>
+
+<section>
+    <h2>Dashboard Highlights</h2>
+
+    <p class="section-intro">
+        Key areas this Excel dashboard helps users analyze.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>KPI Monitoring</h3>
+            <p>
+                Track financial metrics and business indicators in one centralized dashboard.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Trend Visibility</h3>
+            <p>
+                Analyze financial movement over time using clear Excel chart visuals.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Decision Support</h3>
+            <p>
+                Convert financial data into visual insights that help users make informed decisions.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Need a Similar Excel Dashboard?</h2>
+
+    <p class="section-intro">
+        I can help build Excel dashboards, Power BI reports, SQL datasets,
+        and automation workflows for business and financial reporting.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="EXCEL.html">View More Excel Projects</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

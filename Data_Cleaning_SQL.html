@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Data Cleaning in SQL Server | Allen Arorong</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s ease;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 20px 35px rgba(0,0,0,.35);
+}
+
+.card h3{
+    margin-top:0;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.stack span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.content{
+    max-width:1050px;
+    margin:auto;
+    background:var(--card);
+    padding:35px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.content h2{
+    text-align:left;
+    margin-top:35px;
+    font-size:28px;
+}
+
+.content h2:first-child{
+    margin-top:0;
+}
+
+.content p,
+.content li{
+    color:var(--muted);
+}
+
+.workflow{
+    max-width:1050px;
+    margin:30px auto 0;
+    background:var(--card2);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:14px;
+    padding:24px;
+    color:var(--muted);
+}
+
+.workflow strong{
+    color:#fff;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:54px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Data Cleaning in SQL Server</h1>
+    <div class="subtitle">SQL & Data Preparation Case Study</div>
+
+    <p>
+        SQL Server data cleaning project focused on transforming raw housing data into a cleaner,
+        more reliable dataset for analysis and reporting.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#overview">Project Overview</a>
+        <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/SQL/SQL%20(python)/Data%20Cleaning%20in%20SQL%20SERVER%20(%20Python%20).ipynb"
+           target="_blank">
+            View GitHub Notebook
+        </a>
+        <a class="btn secondary" href="index.html#sql">Back to SQL Projects</a>
+    </div>
+
+    <div class="stack">
+        <span>SQL Server</span>
+        <span>Data Cleaning</span>
+        <span>Data Preparation</span>
+        <span>ETL</span>
+        <span>Data Quality</span>
+        <span>Reporting Ready Data</span>
+    </div>
+</section>
+
+<section id="overview">
+    <h2>Project Overview</h2>
+
+    <p class="section-intro">
+        This project demonstrates how raw and messy data can be cleaned,
+        standardized, and prepared for analytics using SQL Server.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Data Quality</h3>
+            <p>Improved consistency by cleaning and standardizing raw housing data fields.</p>
+        </div>
+
+        <div class="card">
+            <h3>SQL Transformation</h3>
+            <p>Used SQL logic to update values, split fields, remove duplicates, and prepare data for reporting.</p>
+        </div>
+
+        <div class="card">
+            <h3>Reporting Ready</h3>
+            <p>Prepared a cleaner dataset that can be used for analysis, dashboards, and business reporting.</p>
+        </div>
+    </div>
+</section>
+<section id="case-study">
+
+    <div class="content">
+
+        <h2>Business Problem</h2>
+
+        <p>
+            Raw housing datasets often contain duplicate records, inconsistent formatting,
+            missing values, and unnecessary columns. These issues reduce data quality,
+            create inaccurate reporting, and make analysis more difficult.
+        </p>
+
+        <h2>Solution</h2>
+
+        <p>
+            Using SQL Server, I cleaned and transformed the dataset by standardizing values,
+            removing duplicate records, converting data types, splitting columns,
+            handling missing information, and preparing the dataset for reporting and analytics.
+        </p>
+
+        <h2>Data Cleaning Process</h2>
+
+        <div class="workflow">
+
+            <strong>Workflow</strong>
+
+            <br><br>
+
+            Raw Housing Dataset
+
+            <br>↓
+
+            Standardize Date Formats
+
+            <br>↓
+
+            Handle Missing Values
+
+            <br>↓
+
+            Split Address Fields
+
+            <br>↓
+
+            Remove Duplicate Records
+
+            <br>↓
+
+            Normalize Data
+
+            <br>↓
+
+            Remove Unused Columns
+
+            <br>↓
+
+            Clean Reporting Dataset
+
+        </div>
+
+        <h2>SQL Techniques Used</h2>
+
+        <ul>
+
+            <li>Data Type Conversion</li>
+
+            <li>Standardizing Date Formats</li>
+
+            <li>Handling NULL Values</li>
+
+            <li>Splitting Columns Using SQL Functions</li>
+
+            <li>Removing Duplicate Records</li>
+
+            <li>Using Common Table Expressions (CTEs)</li>
+
+            <li>Window Functions</li>
+
+            <li>String Manipulation</li>
+
+            <li>Updating Existing Records</li>
+
+            <li>Dropping Unused Columns</li>
+
+        </ul>
+
+        <h2>Key Features</h2>
+
+        <ul>
+
+            <li>Improved overall data quality</li>
+
+            <li>Prepared data for business reporting</li>
+
+            <li>Created consistent and standardized values</li>
+
+            <li>Removed redundant records</li>
+
+            <li>Simplified future analysis</li>
+
+            <li>Built reusable SQL scripts</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Business Value</h2>
+
+    <p class="section-intro">
+
+        Clean and reliable data is the foundation of accurate reporting and business intelligence.
+
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Improved Data Quality</h3>
+
+            <p>
+
+                Eliminated duplicate and inconsistent records to improve reporting accuracy.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Faster Analysis</h3>
+
+            <p>
+
+                Prepared clean datasets that are easier to analyze and visualize.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Reporting Ready</h3>
+
+            <p>
+
+                Created datasets ready for Power BI dashboards, Excel reports, and SQL reporting.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Technology Stack</h2>
+
+    <p class="section-intro">
+
+        Technologies used throughout this SQL data cleaning project.
+
+    </p>
+
+    <div class="stack">
+
+        <span>SQL Server</span>
+
+        <span>T-SQL</span>
+
+        <span>CTE</span>
+
+        <span>Window Functions</span>
+
+        <span>Data Cleaning</span>
+
+        <span>Data Preparation</span>
+
+        <span>Data Validation</span>
+
+        <span>Reporting</span>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Project Resources</h2>
+
+    <p class="section-intro">
+
+        Explore the complete notebook and SQL implementation on GitHub.
+
+    </p>
+
+    <div class="btns">
+
+        <a class="btn"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/SQL/SQL%20(python)/Data%20Cleaning%20in%20SQL%20SERVER%20(%20Python%20).ipynb"
+           target="_blank">
+
+            💻 View GitHub Notebook
+
+        </a>
+
+        <a class="btn secondary"
+           href="index.html#sql">
+
+            View More SQL Projects
+
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    Allen Arorong • Data Analytics & AI Automation Consultant
+
+</footer>
+
+</body>
+</html>

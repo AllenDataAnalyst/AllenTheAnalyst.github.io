@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Automated File Sorter | Python Automation | Allen Arorong</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --border:#334155;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+nav a:hover{color:var(--accent)}
+
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
+
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.preview{
+    max-width:1100px;
+    margin:35px auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview img{
+    width:100%;
+    display:block;
+    object-fit:cover;
+    background:#0b1220;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    max-width:1050px;
+    margin:35px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transition:.25s;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 18px 34px rgba(0,0,0,.35);
+}
+
+.card h3{
+    color:var(--accent);
+    margin-top:0;
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.content-box{
+    max-width:1050px;
+    margin:auto;
+    background:var(--card);
+    padding:35px;
+    border-radius:14px;
+    border:1px solid var(--border);
+}
+
+.content-box h2{
+    text-align:left;
+    margin-top:30px;
+    font-size:28px;
+}
+
+.content-box h2:first-child{
+    margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+    color:var(--muted);
+}
+
+.stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.stack.center{
+    justify-content:center;
+}
+
+.stack span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.note{
+    max-width:950px;
+    margin:30px auto 0;
+    background:var(--card2);
+    padding:20px;
+    border-left:5px solid var(--accent);
+    border-radius:12px;
+    color:var(--muted);
+}
+
+.note strong{
+    color:var(--accent);
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:55px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Automated File Sorter</h1>
+    <div class="subtitle">Python Automation Case Study</div>
+
+    <p>
+        Python automation project designed to organize files into folders based on file type,
+        reducing manual file management work and improving folder organization.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#overview">Project Overview</a>
+        <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/Amazon%20Web%20Scraping(Python%20Project).ipynb"
+           target="_blank">
+            View Python Notebook
+        </a>
+        <a class="btn secondary" href="Python.html">Back to Python Projects</a>
+    </div>
+
+    <div class="stack center">
+        <span>Python</span>
+        <span>Automation</span>
+        <span>File Management</span>
+        <span>OS Module</span>
+        <span>Folder Organization</span>
+        <span>Scripting</span>
+    </div>
+</section>
+
+<section id="overview">
+    <h2>Project Overview</h2>
+
+    <p class="section-intro">
+        This project demonstrates how Python can automate repetitive file organization tasks
+        by sorting files into designated folders based on file extensions.
+    </p>
+
+    <div class="preview">
+        <img src="images/Filesorter2.jpg" alt="Automated File Sorter with Python">
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>File Organization</h3>
+            <p>Automatically organizes files into folders based on their file type or extension.</p>
+        </div>
+
+        <div class="card">
+            <h3>Manual Work Reduction</h3>
+            <p>Reduces repetitive file sorting tasks that would normally be done manually.</p>
+        </div>
+
+        <div class="card">
+            <h3>Reusable Script</h3>
+            <p>Creates a repeatable Python workflow that can be reused for different folders.</p>
+        </div>
+    </div>
+</section>
+<section id="case-study">
+    <div class="content-box">
+
+        <h2>Business Problem</h2>
+        <p>
+            Download folders and shared directories can quickly become disorganized when files of different types
+            are stored in one location. Manually sorting files into folders is repetitive,
+            time consuming, and easy to forget.
+        </p>
+
+        <h2>Solution</h2>
+        <p>
+            I created a Python automation script that checks files in a selected folder,
+            identifies each file type, creates destination folders when needed,
+            and moves files into the correct folders automatically.
+        </p>
+
+        <h2>Automation Workflow</h2>
+        <ul>
+            <li>Read files from the target directory</li>
+            <li>Check each file extension</li>
+            <li>Create folders for specific file types</li>
+            <li>Move files into matching folders</li>
+            <li>Prevent manual drag and drop work</li>
+            <li>Keep the directory organized using repeatable Python logic</li>
+        </ul>
+
+        <h2>Python Techniques Used</h2>
+        <ul>
+            <li>File path handling</li>
+            <li>Folder creation</li>
+            <li>File extension checking</li>
+            <li>Conditional logic</li>
+            <li>Looping through files</li>
+            <li>Automating file movement</li>
+            <li>Jupyter Notebook documentation</li>
+        </ul>
+
+        <h2>Tools Used</h2>
+        <div class="stack">
+            <span>Python</span>
+            <span>Jupyter Notebook</span>
+            <span>OS Module</span>
+            <span>Shutil</span>
+            <span>Automation</span>
+            <span>File Management</span>
+        </div>
+
+        <h2>Business Value</h2>
+        <p>
+            This project shows how Python can automate small but repetitive tasks,
+            improve personal productivity, reduce file clutter, and create reusable scripts
+            for everyday workflow automation.
+        </p>
+
+    </div>
+</section>
+
+<section>
+    <h2>Project Highlights</h2>
+
+    <p class="section-intro">
+        Key automation skills demonstrated in this Python project.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Simple Automation</h3>
+            <p>
+                Automates a repetitive file management process using basic Python scripting.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reusable Logic</h3>
+            <p>
+                The same script concept can be reused for downloads, reports, images, documents, and other file folders.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Productivity Improvement</h3>
+            <p>
+                Saves time by automatically organizing files without manual sorting.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Source Code & Notebook</h2>
+
+    <p class="section-intro">
+        The complete Python notebook and source code are available on GitHub.
+    </p>
+
+    <div class="btns">
+        <a class="btn"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/Amazon%20Web%20Scraping(Python%20Project).ipynb"
+           target="_blank">
+            📒 View Python Notebook
+        </a>
+
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project"
+           target="_blank">
+            💻 GitHub Repository
+        </a>
+
+        <a class="btn secondary"
+           href="Python.html">
+            ← Back to Python Projects
+        </a>
+    </div>
+
+    <div class="note">
+        <strong>Source Code Available</strong><br><br>
+        This project was developed using Python and Jupyter Notebook.
+        The complete automation logic, file sorting workflow, and source code
+        are available on GitHub for technical review.
+    </div>
+</section>
+
+<section>
+    <h2>Need Similar Automation?</h2>
+
+    <p class="section-intro">
+        I can help build Python automation scripts, AI workflows, SQL reports,
+        Power BI dashboards, and Excel reporting solutions.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="Python.html">View More Python Projects</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

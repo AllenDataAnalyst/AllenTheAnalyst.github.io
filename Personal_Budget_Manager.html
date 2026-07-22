@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Personal Budget Manager | Excel Dashboard | Allen Arorong</title>
+
+<style>
+
+:root{
+--bg:#0f172a;
+--card:#1f2937;
+--card2:#172033;
+--accent:#18bfef;
+--text:#e5e7eb;
+--muted:#cbd5e1;
+--border:#334155;
+}
+
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(17,24,39,.95);
+padding:16px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+}
+
+.logo a{
+color:white;
+text-decoration:none;
+font-weight:800;
+}
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:700;
+font-size:14px;
+white-space:nowrap;
+}
+
+nav a:hover{
+color:var(--accent);
+}
+
+.hero{
+padding:95px 40px 80px;
+text-align:center;
+background:linear-gradient(135deg,
+rgba(15,23,42,.95),
+rgba(30,58,138,.88));
+}
+
+.hero h1{
+font-size:48px;
+margin:0;
+}
+
+.hero .subtitle{
+font-size:22px;
+font-weight:800;
+color:var(--accent);
+margin-top:18px;
+}
+
+.hero p{
+max-width:900px;
+margin:24px auto;
+font-size:19px;
+color:var(--muted);
+}
+
+.btns{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+background:var(--accent);
+color:#000;
+padding:14px 24px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.btn.secondary{
+background:transparent;
+border:1px solid var(--accent);
+color:white;
+}
+
+section{
+padding:70px 40px;
+}
+
+section:nth-of-type(even){
+background:#111827;
+}
+
+h2{
+text-align:center;
+font-size:36px;
+margin-bottom:12px;
+}
+
+.section-intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+font-size:18px;
+color:var(--muted);
+}
+
+.preview{
+max-width:1100px;
+margin:35px auto;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview video{
+width:100%;
+display:block;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+max-width:1050px;
+margin:35px auto;
+}
+
+.card{
+background:var(--card);
+padding:24px;
+border-radius:14px;
+border:1px solid var(--border);
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
+}
+
+.card h3{
+color:var(--accent);
+margin-top:0;
+}
+
+.card p{
+color:var(--muted);
+}
+
+.content-box{
+max-width:1050px;
+margin:auto;
+background:var(--card);
+padding:35px;
+border-radius:14px;
+border:1px solid var(--border);
+}
+
+.content-box h2{
+text-align:left;
+margin-top:30px;
+}
+
+.content-box h2:first-child{
+margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+color:var(--muted);
+}
+
+.stack{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+
+.stack.center{
+justify-content:center;
+}
+
+.stack span{
+background:#334155;
+padding:8px 14px;
+border-radius:20px;
+font-size:13px;
+}
+
+.note{
+max-width:950px;
+margin:30px auto;
+background:var(--card2);
+padding:20px;
+border-left:5px solid var(--accent);
+border-radius:12px;
+color:var(--muted);
+}
+
+.note strong{
+color:var(--accent);
+}
+
+footer{
+padding:40px;
+text-align:center;
+background:#111827;
+color:#94a3b8;
+border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+
+header{
+flex-direction:column;
+gap:14px;
+padding:16px 20px;
+}
+
+nav{
+width:100%;
+overflow-x:auto;
+justify-content:flex-start;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+section{
+padding:55px 22px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<a href="index.html">Allen Arorong</a>
+</div>
+
+<nav>
+
+<a href="index.html#solutions">Analytics Solutions</a>
+<a href="index.html#powerbi">Power BI</a>
+<a href="index.html#sql">SQL</a>
+<a href="index.html#automation">AI Automation</a>
+<a href="index.html#about">About</a>
+<a href="index.html#contact">Contact</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>
+
+Personal Budget Manager
+
+</h1>
+
+<div class="subtitle">
+
+Excel Budget Planning Case Study
+
+</div>
+
+<p>
+
+An Excel budgeting solution designed to simplify personal financial planning through automated calculations,
+budget tracking,
+goal monitoring,
+and interactive dashboard reporting.
+
+</p>
+
+<div class="btns">
+
+<a class="btn" href="#overview">
+
+Project Overview
+
+</a>
+
+<a class="btn secondary" href="#demo">
+
+Watch Demo
+
+</a>
+
+<a class="btn secondary" href="EXCEL.html">
+
+Back to Excel Projects
+
+</a>
+
+</div>
+
+<div class="stack center">
+
+<span>Excel</span>
+<span>Budget Planning</span>
+<span>Finance</span>
+<span>Dashboard</span>
+<span>Automation</span>
+<span>Personal Finance</span>
+
+</div>
+
+</section>
+
+<section id="overview">
+
+<h2>
+
+Project Overview
+
+</h2>
+
+<p class="section-intro">
+
+This workbook helps users manage personal finances through budget planning,
+expense tracking,
+goal management,
+and automated financial reporting.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+
+Budget Planning
+
+</h3>
+
+<p>
+
+Create monthly budgets,
+monitor spending,
+and compare planned versus actual expenses.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Financial Goals
+
+</h3>
+
+<p>
+
+Track savings goals and monitor progress using automated calculations.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Interactive Dashboard
+
+</h3>
+
+<p>
+
+Visualize personal financial performance using dynamic Excel dashboards.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="demo">
+
+<h2>
+
+Video Walkthrough
+
+</h2>
+
+<p class="section-intro">
+
+Watch the Personal Budget Manager in action.
+
+</p>
+
+<div class="preview">
+
+<video
+src="Video/Personal_budget_dashboard.mp4"
+autoplay
+loop
+muted
+playsinline
+controls>
+</video>
+
+</div>
+
+<div class="btns">
+
+<a class="btn"
+
+href="Video/Personal_budget_dashboard.mp4"
+
+target="_blank">
+
+🎥 Open Video Demo
+
+</a>
+
+<a class="btn secondary"
+
+href="EXCEL.html">
+
+Back to Excel Projects
+
+</a>
+
+</div>
+
+<div class="note">
+
+<strong>Note:</strong><br><br>
+
+If the embedded video does not play in your browser,
+click <strong>Open Video Demo</strong> to watch the project walkthrough directly.
+
+</div>
+
+</section>
+<section>
+
+<div class="content-box">
+
+<h2>
+
+Business Problem
+
+</h2>
+
+<p>
+
+Managing personal finances manually often leads to inconsistent budgeting,
+missed savings goals,
+and poor visibility into monthly spending.
+
+</p>
+
+<h2>
+
+Solution
+
+</h2>
+
+<p>
+
+I developed an Excel based Personal Budget Manager that automates budget calculations,
+tracks expenses,
+monitors savings goals,
+and presents financial information through an easy to understand dashboard.
+
+</p>
+
+<h2>
+
+Key Features
+
+</h2>
+
+<ul>
+
+<li>Monthly budget planning</li>
+
+<li>Income and expense tracking</li>
+
+<li>Savings goal monitoring</li>
+
+<li>Budget versus actual comparison</li>
+
+<li>Automated calculations</li>
+
+<li>Interactive financial dashboard</li>
+
+<li>Drop down selections for easy data entry</li>
+
+<li>Financial summary reporting</li>
+
+</ul>
+
+<h2>
+
+Tools Used
+
+</h2>
+
+<div class="stack">
+
+<span>Microsoft Excel</span>
+
+<span>Formulas</span>
+
+<span>Charts</span>
+
+<span>Data Validation</span>
+
+<span>Conditional Formatting</span>
+
+<span>Dashboard Design</span>
+
+</div>
+
+<h2>
+
+Business Value
+
+</h2>
+
+<p>
+
+The workbook helps users improve financial discipline,
+monitor spending habits,
+track savings,
+and make informed budgeting decisions using a structured Excel solution.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>
+
+Dashboard Highlights
+
+</h2>
+
+<p class="section-intro">
+
+Key financial planning capabilities provided by this workbook.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+
+Budget Tracking
+
+</h3>
+
+<p>
+
+Monitor planned budgets against actual spending to maintain financial control.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Expense Analysis
+
+</h3>
+
+<p>
+
+Review spending categories and identify opportunities to reduce unnecessary expenses.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Savings Progress
+
+</h3>
+
+<p>
+
+Track financial goals and measure progress toward long term savings objectives.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>
+
+Need a Similar Excel Dashboard?
+
+</h2>
+
+<p class="section-intro">
+
+I build Excel dashboards,
+Power BI reports,
+SQL reporting solutions,
+Looker Studio dashboards,
+and AI automation workflows that transform business data into actionable insights.
+
+</p>
+
+<div class="btns">
+
+<a class="btn"
+
+href="index.html#contact">
+
+Contact Me
+
+</a>
+
+<a class="btn secondary"
+
+href="EXCEL.html">
+
+View More Excel Projects
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+Allen Arorong • Data Analytics & AI Automation Consultant
+
+</footer>
+
+</body>
+
+</html>

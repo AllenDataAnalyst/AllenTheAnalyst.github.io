@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Data Mining Project | Python Analytics | Allen Arorong</title>
+<title>Movie Correlation Analysis | Python Project | Allen Arorong</title>
 
 <style>
 :root{
@@ -148,6 +148,7 @@ h2{
 .preview img{
     width:100%;
     display:block;
+    object-fit:cover;
     background:#0b1220;
 }
 
@@ -155,53 +156,32 @@ h2{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:20px;
-    max-width:1100px;
+    max-width:1050px;
     margin:35px auto;
 }
 
-.card,.project-card{
+.card{
     background:var(--card);
-    border:1px solid var(--border);
+    padding:24px;
     border-radius:14px;
-    overflow:hidden;
+    border:1px solid var(--border);
     transition:.25s;
     box-shadow:0 14px 28px rgba(0,0,0,.22);
 }
 
-.card{
-    padding:24px;
-}
-
-.card:hover,.project-card:hover{
+.card:hover{
     transform:translateY(-6px);
     border-color:var(--accent);
     box-shadow:0 18px 34px rgba(0,0,0,.35);
 }
 
-.card h3,.project-content h3{
+.card h3{
     color:var(--accent);
     margin-top:0;
 }
 
-.card p,.project-content p{
+.card p{
     color:var(--muted);
-}
-
-.project-card a{
-    color:inherit;
-    text-decoration:none;
-}
-
-.project-card img{
-    width:100%;
-    height:240px;
-    display:block;
-    object-fit:cover;
-    background:#0b1220;
-}
-
-.project-content{
-    padding:24px;
 }
 
 .content-box{
@@ -228,7 +208,7 @@ h2{
     color:var(--muted);
 }
 
-.stack,.mini-tags{
+.stack{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
@@ -239,7 +219,7 @@ h2{
     justify-content:center;
 }
 
-.stack span,.mini-tags span{
+.stack span{
     background:#334155;
     padding:8px 14px;
     border-radius:20px;
@@ -289,10 +269,6 @@ footer{
     section{
         padding:55px 22px;
     }
-
-    .project-card img{
-        height:220px;
-    }
 }
 </style>
 </head>
@@ -315,28 +291,32 @@ footer{
 </header>
 
 <section class="hero">
-    <h1>Data Mining Project</h1>
+    <h1>Movie Correlation Analysis</h1>
     <div class="subtitle">Python Data Analysis Case Study</div>
 
     <p>
-        Python data mining and exploratory analysis project covering salary expectations,
-        automobile data, and diabetes risk factors using Jupyter Notebook and Python.
+        Python analysis project focused on identifying which movie variables are most strongly related
+        to gross revenue performance using correlation analysis and exploratory data analysis.
     </p>
 
     <div class="btns">
         <a class="btn" href="#overview">Project Overview</a>
-        <a class="btn secondary" href="#subprojects">View Notebooks</a>
         <a class="btn secondary" href="#case-study">Case Study</a>
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/Correlation_Movies%20(Python)%20Project.ipynb"
+           target="_blank">
+            View Python Notebook
+        </a>
         <a class="btn secondary" href="Python.html">Back to Python Projects</a>
     </div>
 
     <div class="stack center">
         <span>Python</span>
-        <span>Jupyter Notebook</span>
-        <span>Data Mining</span>
-        <span>EDA</span>
         <span>Pandas</span>
         <span>Correlation Analysis</span>
+        <span>EDA</span>
+        <span>Data Visualization</span>
+        <span>Revenue Analysis</span>
     </div>
 </section>
 
@@ -344,122 +324,68 @@ footer{
     <h2>Project Overview</h2>
 
     <p class="section-intro">
-        This project applies data mining and exploratory data analysis techniques
-        across multiple datasets to uncover patterns, relationships, and useful insights.
+        This project uses Python to explore movie data and understand which variables
+        may influence or relate to gross revenue.
     </p>
 
     <div class="preview">
-        <img src="images/Data Mining.jpg" alt="Data Mining Python Project">
+        <img src="images/movies.jpg" alt="Movie Correlation with Python">
     </div>
 
     <div class="grid">
         <div class="card">
-            <h3>Salary Analysis</h3>
-            <p>Analyzed salary expectations based on years of work experience.</p>
+            <h3>Revenue Analysis</h3>
+            <p>Explored movie gross revenue and compared it against available movie attributes.</p>
         </div>
 
         <div class="card">
-            <h3>Automobile Analysis</h3>
-            <p>Explored automobile data to understand pricing, performance, and related factors.</p>
+            <h3>Correlation Review</h3>
+            <p>Used correlation analysis to identify variables with stronger relationships to revenue.</p>
         </div>
 
         <div class="card">
-            <h3>Diabetes Analysis</h3>
-            <p>Explored health related data to identify patterns and risk factors associated with diabetes.</p>
+            <h3>Visual Exploration</h3>
+            <p>Created visual analysis to better understand relationships and patterns in the dataset.</p>
         </div>
     </div>
 </section>
-<section id="subprojects">
-    <h2>Data Mining Notebooks</h2>
-
-    <p class="section-intro">
-        These are the individual notebooks included under this Data Mining project.
-    </p>
-
-    <div class="grid">
-
-        <div class="project-card">
-            <a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/mining/Exploratory_Indians%20Diabetes%20Database.ipynb" target="_blank">
-                <img src="images/Diabetes.png" alt="Pima Indians Diabetes Database">
-                <div class="project-content">
-                    <h3>Exploratory Data Analysis on Pima Indians Diabetes Database</h3>
-                    <p>
-                        Exploratory data analysis project focused on identifying patterns,
-                        correlations, and possible risk factors related to diabetes.
-                    </p>
-                    <div class="mini-tags">
-                        <span>Python</span>
-                        <span>Health Data</span>
-                        <span>EDA</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="project-card">
-            <a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/mining/Exploratory_Data_automobile.ipynb" target="_blank">
-                <img src="images/automobile.png" alt="Automobile Data Analysis">
-                <div class="project-content">
-                    <h3>Exploratory Data Analysis on Automobile Dataset</h3>
-                    <p>
-                        Python analysis project exploring automobile data to understand pricing,
-                        performance, and customer related vehicle factors.
-                    </p>
-                    <div class="mini-tags">
-                        <span>Python</span>
-                        <span>Automobile</span>
-                        <span>Data Analysis</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="project-card">
-            <a href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/mining/SalaryExpectationBasonOnExperiences.ipynb" target="_blank">
-                <img src="images/salary.png" alt="Salary Expectation Based on Experience">
-                <div class="project-content">
-                    <h3>Salary Expectation Based on Experience</h3>
-                    <p>
-                        Python notebook analyzing the relationship between work experience
-                        and salary expectations using data analysis techniques.
-                    </p>
-                    <div class="mini-tags">
-                        <span>Python</span>
-                        <span>Salary Analysis</span>
-                        <span>Regression</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-    </div>
-</section>
-
 <section id="case-study">
     <div class="content-box">
 
         <h2>Business Problem</h2>
         <p>
-            Raw datasets often contain hidden patterns that are difficult to identify through manual review.
-            Without proper analysis, users may miss important relationships, trends, and risk indicators.
+            Movie performance can be influenced by many factors such as budget, votes,
+            company, genre, release year, score, and runtime. Without analysis,
+            it is difficult to determine which factors are most associated with gross revenue.
         </p>
 
         <h2>Solution</h2>
         <p>
-            I used Python and Jupyter Notebook to perform exploratory data analysis and data mining
-            across different datasets. The goal was to understand the data structure,
-            identify meaningful relationships, and generate insights from salary,
-            automobile, and diabetes related datasets.
+            I used Python to analyze movie data, clean and prepare the dataset,
+            calculate correlations, and visualize relationships between variables.
+            The goal was to identify which features have the strongest relationship with gross revenue.
         </p>
 
-        <h2>Tasks Performed</h2>
+        <h2>Analysis Workflow</h2>
         <ul>
-            <li>Performed exploratory data analysis on multiple datasets</li>
-            <li>Analyzed salary expectations based on work experience</li>
-            <li>Explored automobile factors affecting price and performance</li>
-            <li>Reviewed diabetes related variables and possible risk patterns</li>
-            <li>Used Python to clean, inspect, and summarize datasets</li>
-            <li>Identified relationships, patterns, and analytical insights</li>
+            <li>Loaded and reviewed the movie dataset</li>
+            <li>Cleaned and prepared data for analysis</li>
+            <li>Checked missing values and data types</li>
+            <li>Explored movie revenue and supporting variables</li>
+            <li>Calculated correlations between numeric variables</li>
+            <li>Visualized relationships using charts and heatmaps</li>
+            <li>Identified variables most associated with gross revenue</li>
+        </ul>
+
+        <h2>Python Techniques Used</h2>
+        <ul>
+            <li>Data cleaning and preparation</li>
+            <li>Exploratory data analysis</li>
+            <li>Correlation matrix analysis</li>
+            <li>Scatter plot visualization</li>
+            <li>Heatmap visualization</li>
+            <li>Numeric encoding for categorical fields</li>
+            <li>Jupyter Notebook documentation</li>
         </ul>
 
         <h2>Tools Used</h2>
@@ -469,32 +395,70 @@ footer{
             <span>Pandas</span>
             <span>NumPy</span>
             <span>Matplotlib</span>
-            <span>Data Mining</span>
-            <span>Exploratory Data Analysis</span>
+            <span>Seaborn</span>
+            <span>Correlation Analysis</span>
         </div>
 
         <h2>Business Value</h2>
         <p>
-            This project demonstrates how Python can support structured analysis,
-            pattern discovery, risk factor review, and insight generation before building
-            dashboards, reports, or predictive analytics workflows.
+            This project demonstrates how Python can be used to explore business performance drivers,
+            identify meaningful relationships, and support data driven decision making through statistical analysis.
         </p>
 
     </div>
 </section>
 
 <section>
-    <h2>Source Code & Notebooks</h2>
+    <h2>Project Highlights</h2>
 
     <p class="section-intro">
-        The complete Jupyter Notebooks are available on GitHub.
+        Key analytics skills demonstrated in this Python project.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Correlation Analysis</h3>
+            <p>
+                Identified which movie variables had stronger relationships with gross revenue.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Data Visualization</h3>
+            <p>
+                Used charts and heatmaps to communicate relationships and patterns clearly.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Business Insight</h3>
+            <p>
+                Converted movie data into useful insights about revenue related factors.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Source Code & Notebook</h2>
+
+    <p class="section-intro">
+        The complete Python notebook and source code are available on GitHub.
     </p>
 
     <div class="btns">
         <a class="btn"
-           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/tree/main/mining"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project/blob/main/Correlation_Movies%20(Python)%20Project.ipynb"
            target="_blank">
-            💻 Open GitHub Folder
+            📒 View Python Notebook
+        </a>
+
+        <a class="btn secondary"
+           href="https://github.com/AllenDataAnalyst/My-Portfolio-Project"
+           target="_blank">
+            💻 GitHub Repository
         </a>
 
         <a class="btn secondary"
@@ -505,9 +469,9 @@ footer{
 
     <div class="note">
         <strong>Source Code Available</strong><br><br>
-        This project includes multiple Python notebooks.
-        You can review the full implementation, data preparation process,
-        analysis workflow, outputs, and visuals directly through GitHub.
+        This project was developed using Python and Jupyter Notebook.
+        The complete analysis workflow, correlation logic, visualizations, and source code
+        are available on GitHub for technical review.
     </div>
 </section>
 
@@ -515,8 +479,8 @@ footer{
     <h2>Need Similar Data Analysis?</h2>
 
     <p class="section-intro">
-        I can help with data analysis, SQL reporting, Power BI dashboards,
-        Excel dashboards, and automation workflows.
+        I can help build Python analysis workflows, SQL reports,
+        Power BI dashboards, Excel dashboards, and automation solutions.
     </p>
 
     <div class="btns">

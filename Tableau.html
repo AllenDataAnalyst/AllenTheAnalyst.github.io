@@ -1,143 +1,405 @@
-<!DOCTYPE HTML>
-<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tableau Dashboard Projects | Allen Arorong</title>
 
--->
-<html>
-	<head>
-		<title>Data Analyst Project Profile</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-				<!-- Intro -->
-				<div id="intro">
-					<h1>Allen The Analyst Portfolio<br />
-					</h1>
-					<p>Data Analysts skiled in  SQL, Tableau, Power BI, Phython and Excel <a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" > @AllenTheAnalyst</a><br />
-					<ul class="actions">
-						<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-					</ul>
-				</div>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Allen The Analyst</a>
-					</header>
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(17,24,39,.95);
+    padding:16px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="About ME.html">About Me</a></li>
-							<li><a href="index.html">PROJECTS</a></li>
-							<li><a href="SQL.html">SQL</a></li>
-							<li><a href="Python.html">PYTHON</a></li>
-							<li><a href="Power BI.html">POWER BI</a></li>
-							<li class="active"><a href="Tableau.html">TABLEAU</a></li>
-							<li><a href="EXCEL.html">EXCEL</a></li>
-							<li><a href="Looker_studio.html">LOOKER</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-						</ul>
-					</nav>
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
 
-				<!-- Main -->
-					<div id="main">
+nav{
+    display:flex;
+    gap:20px;
+}
 
-						<!-- Featured Post -->
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										
-										<h2><a href="https://public.tableau.com/app/profile/allen7159/viz/SalesDashboardTab/SalesDashboard" target="_blank">COVID DASHBOARD PORTFOLIO IN TABLEAU<br />
-										</a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/allen7159/viz/SalesDashboardTab/SalesDashboard" target="_blank" class="image fit"><img src="images/SalesDashboard.png" alt="" /></a>
-									<p>Highly motivated professional with a strong background in data analysis and visualization. Proficient in leveraging Tableau to create impactful dashboards and uncover valuable insights. Skilled in analyzing sales metrics, identifying trends, and implementing strategies to improve performance.</p>
-									
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/allen7159/viz/SalesDashboardTab/SalesDashboard" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="https://public.tableau.com/app/profile/allen7159/viz/CovidDashboardPorfolio_16744453807020/Dashboard1" target="_blank">COVID DASHBOARD PORTFOLIO IN TABLEAU<br />
-										</a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/allen7159/viz/CovidDashboardPorfolio_16744453807020/Dashboard1" target="_blank" class="image fit"><img src="images/Covid new tableau.jpg" alt="" /></a>
-									<p><a href="SQL.html">SQL Server</a> and Tableau's combination allows for efficient analysis and effective visualization of Covid-19 data, providing a powerful tool for understanding the pandemic's impact.<br />
-										<a href="SQL.html">  View (DATA EXPLORATION IN SQL)</a>
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/allen7159/viz/CovidDashboardPorfolio_16744453807020/Dashboard1" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										
-										<h2><a href="https://public.tableau.com/app/profile/allen7159/viz/AirBnbFullProject_16739721624690/Dashboard1?publish=yes" target="_blank">AIR BNB TABLEAU PROJECT<br />
-										</a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/allen7159/viz/AirBnbFullProject_16739721624690/Dashboard1?publish=yes" target="_blank" class="image fit"><img src="images/air bnb.jpg" alt="" /></a>
-									<p>Tableau's visualization enhances data analysis of Airbnb, providing valuable insights into the vacation rental market.</p>
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/allen7159/viz/AirBnbFullProject_16739721624690/Dashboard1?publish=yes" target="_blank" class="button">View Project</a></li>
-									</ul>
-								</article>
-							</section>
+nav a:hover{color:var(--accent)}
 
-					
-	
+.hero{
+    padding:95px 40px 80px;
+    text-align:center;
+    background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
 
-						<section class="split contact">
-							<section class="alt">
-								<h3>Location</h3>
-								<p>Philippines, Iloilo City<br />
-								</p>
-							</section>
-							<section>
-								<h3>Mobile number </h3>
-								<p><a href="#">+639983369301</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">allen.arorong23@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-				
-									<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+.hero h1{
+    font-size:48px;
+    margin:0;
+    color:#fff;
+}
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+.hero .subtitle{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--accent);
+}
 
-			</div>
+.hero p{
+    max-width:900px;
+    margin:24px auto;
+    font-size:19px;
+    color:var(--muted);
+}
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
 
-	</body>
+.btn{
+    background:var(--accent);
+    color:#000;
+    padding:14px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn.secondary{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:#fff;
+}
+
+section{
+    padding:70px 40px;
+}
+
+section:nth-of-type(even){
+    background:#111827;
+}
+
+h2{
+    text-align:center;
+    font-size:36px;
+    margin:0 0 12px;
+    color:#fff;
+}
+
+.section-intro{
+    max-width:900px;
+    margin:0 auto 34px;
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+    max-width:1180px;
+    margin:35px auto;
+}
+
+.card,.project-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px rgba(0,0,0,.22);
+    transition:.25s ease;
+}
+
+.card{
+    padding:25px;
+}
+
+.card:hover,.project-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 20px 35px rgba(0,0,0,.35);
+}
+
+.card h3,.project-content h3{
+    margin-top:0;
+    color:var(--accent);
+}
+
+.card p,.project-content p{
+    color:var(--muted);
+}
+
+.project-card a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.project-card img{
+    width:100%;
+    height:230px;
+    display:block;
+    object-fit:cover;
+    background:#0b1220;
+}
+
+.project-content{
+    padding:24px;
+}
+
+.stack,.mini-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+}
+
+.stack{
+    justify-content:center;
+    max-width:1000px;
+    margin:26px auto 0;
+}
+
+.stack span,.mini-tags span{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111827;
+    color:#94a3b8;
+    border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px;
+    }
+
+    nav{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    section{
+        padding:54px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">Allen Arorong</a>
+    </div>
+
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Tableau Dashboard Projects</h1>
+    <div class="subtitle">Interactive Data Visualization Portfolio</div>
+
+    <p>
+        Tableau dashboard projects focused on business reporting, data storytelling,
+        sales analytics, public health analysis, and market insights.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="#projects">View Tableau Projects</a>
+        <a class="btn secondary" href="index.html#additional-projects">Back to Portfolio</a>
+    </div>
+
+    <div class="stack">
+        <span>Tableau</span>
+        <span>Tableau Public</span>
+        <span>Dashboard Design</span>
+        <span>Data Visualization</span>
+        <span>Business Intelligence</span>
+    </div>
+</section>
+<section id="projects">
+    <h2>Tableau Projects</h2>
+
+    <p class="section-intro">
+        Select a Tableau project below to view the full case study and live dashboard.
+    </p>
+
+    <div class="grid">
+
+        <div class="project-card">
+            <a href="Sales_Dashboard.html" target="_blank">
+                <img src="images/SalesDashboard.png" alt="Sales Dashboard in Tableau">
+                <div class="project-content">
+                    <h3>Sales Dashboard in Tableau</h3>
+                    <p>
+                        Interactive Tableau dashboard that analyzes sales performance,
+                        business trends, KPIs, and customer insights through dynamic visualizations.
+                    </p>
+                    <div class="mini-tags">
+                        <span>Tableau</span>
+                        <span>Sales Analytics</span>
+                        <span>Dashboard</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="project-card">
+            <a href="Covid_Dashboard.html" target="_blank">
+                <img src="images/Covid new tableau.jpg" alt="Covid Dashboard in Tableau">
+                <div class="project-content">
+                    <h3>Covid Dashboard Portfolio in Tableau</h3>
+                    <p>
+                        Interactive Tableau dashboard visualizing Covid 19 cases,
+                        deaths, vaccination trends, and country level comparisons using public health data.
+                    </p>
+                    <div class="mini-tags">
+                        <span>Tableau</span>
+                        <span>Covid Analysis</span>
+                        <span>Data Visualization</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="project-card">
+            <a href="Airbnb_Dashboard.html" target="_blank">
+                <img src="images/air bnb.jpg" alt="Airbnb Tableau Dashboard">
+                <div class="project-content">
+                    <h3>Airbnb Tableau Project</h3>
+                    <p>
+                        Interactive Tableau dashboard exploring Airbnb pricing,
+                        listing distribution, market trends, and property performance across locations.
+                    </p>
+                    <div class="mini-tags">
+                        <span>Tableau</span>
+                        <span>Airbnb</span>
+                        <span>Market Analysis</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Why Tableau?</h2>
+
+    <p class="section-intro">
+        Tableau enables businesses to transform complex datasets into interactive dashboards that
+        support faster analysis, improve reporting, and help decision makers uncover meaningful insights.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Interactive Dashboards</h3>
+            <p>
+                Create engaging dashboards with filters,
+                drill downs, and dynamic visualizations.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Business Storytelling</h3>
+            <p>
+                Present data in a clear visual format that makes trends,
+                patterns, and opportunities easier to understand.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Decision Support</h3>
+            <p>
+                Help organizations monitor KPIs,
+                track performance, and make data driven decisions.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Need a Similar Dashboard?</h2>
+
+    <p class="section-intro">
+        I can help build Tableau dashboards, Power BI reports, SQL datasets,
+        and automation workflows for business reporting.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="index.html#additional-projects">Back to Portfolio</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
 </html>

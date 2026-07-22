@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Covid Dashboard Portfolio | Tableau Case Study | Allen Arorong</title>
+
+<style>
+:root{
+--bg:#0f172a;
+--panel:#111827;
+--card:#1f2937;
+--card2:#172033;
+--accent:#18bfef;
+--text:#e5e7eb;
+--muted:#cbd5e1;
+--soft:#94a3b8;
+--border:#334155;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(17,24,39,.95);
+padding:16px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+}
+
+.logo a{
+color:white;
+text-decoration:none;
+font-weight:800;
+}
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:700;
+font-size:14px;
+white-space:nowrap;
+}
+
+nav a:hover{color:var(--accent)}
+
+.hero{
+padding:95px 40px 80px;
+text-align:center;
+background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88));
+}
+
+.hero h1{
+font-size:48px;
+margin:0;
+}
+
+.hero .subtitle{
+font-size:22px;
+font-weight:800;
+color:var(--accent);
+margin-top:18px;
+}
+
+.hero p{
+max-width:900px;
+margin:22px auto;
+font-size:19px;
+color:var(--muted);
+}
+
+.btns{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:14px;
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+background:var(--accent);
+color:#000;
+padding:14px 24px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.btn.secondary{
+background:transparent;
+border:1px solid var(--accent);
+color:white;
+}
+
+section{
+padding:70px 40px;
+}
+
+section:nth-of-type(even){
+background:#111827;
+}
+
+h2{
+text-align:center;
+font-size:36px;
+margin:0 0 12px;
+}
+
+.section-intro{
+max-width:900px;
+margin:auto auto 34px;
+text-align:center;
+color:var(--muted);
+font-size:18px;
+}
+
+.preview{
+max-width:1100px;
+margin:auto;
+background:var(--card);
+border-radius:14px;
+overflow:hidden;
+border:1px solid var(--border);
+box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+
+.preview iframe{
+width:100%;
+height:760px;
+border:0;
+display:block;
+background:#0b1220;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1050px;
+margin:30px auto;
+}
+
+.card{
+background:var(--card);
+padding:24px;
+border-radius:14px;
+border:1px solid var(--border);
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
+box-shadow:0 18px 34px rgba(0,0,0,.35);
+}
+
+.card h3{
+color:var(--accent);
+margin-top:0;
+}
+
+.card p{
+color:var(--muted);
+}
+
+.content-box{
+max-width:1050px;
+margin:auto;
+background:var(--card);
+padding:35px;
+border-radius:14px;
+border:1px solid var(--border);
+}
+
+.content-box h2{
+text-align:left;
+font-size:28px;
+margin-top:30px;
+}
+
+.content-box h2:first-child{
+margin-top:0;
+}
+
+.content-box p,
+.content-box li{
+color:var(--muted);
+}
+
+.stack{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+
+.stack.center{
+justify-content:center;
+max-width:1000px;
+margin:28px auto 0;
+}
+
+.stack span{
+background:#334155;
+padding:8px 14px;
+border-radius:20px;
+font-size:13px;
+}
+
+footer{
+padding:40px;
+text-align:center;
+background:#111827;
+color:#94a3b8;
+border-top:1px solid var(--border);
+}
+
+@media(max-width:850px){
+header{
+flex-direction:column;
+gap:14px;
+padding:16px 20px;
+}
+
+nav{
+width:100%;
+overflow-x:auto;
+justify-content:flex-start;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+section{
+padding:55px 22px;
+}
+
+.preview iframe{
+height:540px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+<a href="index.html">Allen Arorong</a>
+</div>
+
+<nav>
+<a href="index.html#solutions">Analytics Solutions</a>
+<a href="index.html#powerbi">Power BI</a>
+<a href="index.html#sql">SQL</a>
+<a href="index.html#automation">AI Automation</a>
+<a href="index.html#about">About</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Covid Dashboard Portfolio</h1>
+
+<div class="subtitle">
+Tableau Case Study
+</div>
+
+<p>
+Interactive Tableau dashboard built to explore Covid 19 data,
+analyze pandemic trends,
+compare locations,
+and visualize public health impact through clear and interactive reporting.
+</p>
+
+<div class="btns">
+<a class="btn" href="#overview">Project Overview</a>
+<a class="btn secondary" href="#live-demo">Live Dashboard</a>
+<a class="btn secondary"
+href="https://public.tableau.com/app/profile/allen7159/viz/CovidDashboardPorfolio_16744453807020/Dashboard1"
+target="_blank">
+Open Tableau Public
+</a>
+<a class="btn secondary" href="Tableau.html">Back to Tableau Projects</a>
+</div>
+
+<div class="stack center">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Covid Analysis</span>
+<span>Data Visualization</span>
+<span>Public Health Analytics</span>
+<span>Business Intelligence</span>
+</div>
+</section>
+
+<section id="overview">
+<h2>Project Overview</h2>
+
+<p class="section-intro">
+This Tableau dashboard visualizes Covid 19 data to help users understand case trends,
+death impact,
+country level comparisons,
+and the overall pandemic situation through an interactive dashboard.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Covid Trend Analysis</h3>
+<p>Analyze Covid 19 cases, deaths, and changes over time using interactive visualizations.</p>
+</div>
+
+<div class="card">
+<h3>Location Comparison</h3>
+<p>Compare Covid 19 impact across countries, regions, or geographic areas.</p>
+</div>
+
+<div class="card">
+<h3>Public Health Insights</h3>
+<p>Turn raw pandemic data into clear insights for better understanding and reporting.</p>
+</div>
+</div>
+</section>
+
+<section id="live-demo">
+<h2>Try the Dashboard Live</h2>
+
+<p class="section-intro">
+Interact with the Tableau Covid dashboard directly below.
+</p>
+
+<div class="preview">
+<iframe
+src="https://public.tableau.com/views/CovidDashboardPorfolio_16744453807020/Dashboard1?:showVizHome=no&:embed=true"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="btns">
+<a class="btn"
+href="https://public.tableau.com/app/profile/allen7159/viz/CovidDashboardPorfolio_16744453807020/Dashboard1"
+target="_blank">
+🚀 Open Full Screen Dashboard
+</a>
+</div>
+</section>
+<section>
+<div class="content-box">
+<h2>Business Problem</h2>
+<p>
+Covid 19 data can be difficult to interpret when information is spread across multiple countries,
+dates,
+case counts,
+death totals,
+and population level metrics.
+</p>
+
+<p>
+Users need a clear visual dashboard to quickly understand trends,
+compare geographic impact,
+and communicate the pandemic's effect in a simple and interactive way.
+</p>
+
+<h2>Solution</h2>
+<p>
+I created an interactive Tableau dashboard that visualizes Covid 19 data through charts,
+maps,
+and summary views.
+The dashboard helps users explore the data,
+compare locations,
+and identify major trends more easily.
+</p>
+
+<h2>Key Features</h2>
+<ul>
+<li>Covid 19 case trend visualization</li>
+<li>Death count and impact analysis</li>
+<li>Country or region based comparison</li>
+<li>Interactive Tableau filters</li>
+<li>Map based visual analysis</li>
+<li>Clear dashboard layout for public health reporting</li>
+</ul>
+
+<h2>Tools Used</h2>
+<div class="stack">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Data Visualization</span>
+<span>Covid Analysis</span>
+<span>Dashboard Design</span>
+<span>Public Health Analytics</span>
+</div>
+
+<h2>Business Value</h2>
+<p>
+This dashboard helps users quickly understand Covid 19 trends,
+compare impact across locations,
+and communicate public health insights using interactive visual analytics.
+</p>
+</div>
+</section>
+
+<section>
+<h2>Dashboard Highlights</h2>
+
+<p class="section-intro">
+Key areas this Tableau dashboard helps users analyze.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Trend Visibility</h3>
+<p>
+Shows how Covid 19 cases and related metrics changed over time.
+</p>
+</div>
+
+<div class="card">
+<h3>Geographic Impact</h3>
+<p>
+Helps compare the impact of Covid 19 across different countries or regions.
+</p>
+</div>
+
+<div class="card">
+<h3>Public Health Reporting</h3>
+<p>
+Presents complex public health data in a clear and easy to understand dashboard format.
+</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Technology Stack</h2>
+
+<p class="section-intro">
+Tools and concepts used in this Tableau project.
+</p>
+
+<div class="stack center">
+<span>Tableau</span>
+<span>Tableau Public</span>
+<span>Data Visualization</span>
+<span>Dashboard Design</span>
+<span>Covid Data</span>
+<span>Maps</span>
+<span>Interactive Filters</span>
+<span>Business Intelligence</span>
+</div>
+</section>
+
+<section>
+<h2>Need a Similar Dashboard?</h2>
+
+<p class="section-intro">
+I can help build Tableau dashboards,
+Power BI reports,
+SQL datasets,
+and automation workflows for business reporting.
+</p>
+
+<div class="btns">
+<a class="btn" href="index.html#contact">Contact Me</a>
+<a class="btn secondary" href="Tableau.html">View More Tableau Projects</a>
+</div>
+</section>
+
+<footer>
+Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
+
+</body>
+</html>

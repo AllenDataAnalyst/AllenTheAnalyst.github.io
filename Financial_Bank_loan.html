@@ -1,176 +1,269 @@
-<!DOCTYPE HTML>
-<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Financial Bank Loan Dashboard | Allen Arorong</title>
 
--->
-<html>
-	<head>
-		<title>Data Analyst Project Profile</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --card:#1f2937;
+    --card2:#172033;
+    --accent:#18bfef;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --soft:#94a3b8;
+    --border:#334155;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{position:sticky;top:0;z-index:1000;background:rgba(17,24,39,.95);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.logo a{color:#fff;text-decoration:none;font-weight:800}
+nav{display:flex;gap:20px}
+nav a{color:#fff;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
+nav a:hover{color:var(--accent)}
+.hero{padding:95px 40px 80px;text-align:center;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,58,138,.88))}
+.hero h1{font-size:48px;margin:0;color:#fff}
+.hero .subtitle{font-size:21px;font-weight:800;color:var(--accent);margin-top:18px}
+.hero p{max-width:880px;margin:20px auto;font-size:19px;color:var(--muted)}
+.btns{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn{display:inline-block;background:var(--accent);color:#000;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:bold}
+.btn.secondary{background:transparent;color:#fff;border:1px solid var(--accent)}
+section{padding:70px 40px}
+section:nth-of-type(even){background:#111827}
+h2{text-align:center;font-size:36px;margin:0 0 12px;color:#fff}
+.section-intro{max-width:900px;margin:0 auto 34px;text-align:center;color:var(--muted);font-size:18px}
+.preview{max-width:1100px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 14px 28px rgba(0,0,0,.22)}
+.preview video{width:100%;min-height:420px;object-fit:cover;display:block;background:#0b1220}
+.preview iframe{width:100%;height:720px;border:0;display:block;background:#0b1220}
+.content-box{max-width:1050px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px;box-shadow:0 14px 28px rgba(0,0,0,.22)}
+.content-box h2{text-align:left;font-size:28px;margin-top:28px}
+.content-box h2:first-child{margin-top:0}
+.content-box p,.content-box li{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1050px;margin:30px auto 0}
+.card{background:var(--card);padding:24px;border-radius:14px;border:1px solid var(--border);box-shadow:0 14px 28px rgba(0,0,0,.22)}
+.card h3{margin:0 0 10px;color:var(--accent)}
+.card p{color:var(--muted)}
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.stack.center{justify-content:center;max-width:1050px;margin:26px auto 0}
+.stack span{background:#334155;color:#e5e7eb;padding:8px 12px;border-radius:20px;font-size:13px;border:1px solid rgba(255,255,255,.08)}
+footer{padding:40px;text-align:center;background:#111827;color:var(--soft);border-top:1px solid var(--border)}
+@media(max-width:850px){
+    header{flex-direction:column;gap:14px;padding:16px 20px}
+    nav{width:100%;overflow-x:auto;justify-content:flex-start}
+    .hero h1{font-size:36px}
+    section{padding:54px 22px}
+    .preview video{min-height:240px}
+    .preview iframe{height:520px}
+}
+</style>
+</head>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-				<article id="generic">
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Allen The Analyst</a>
-					</header>
+<body>
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul class="links">
-						<li><a href="About ME.html">About Me</a></li>
-						<li><li><a href="index.html">Projects</a></li>	
-						<li><a href="SQL.html">SQL</a></li>						
-						<li><a href="Python.html">PYTHON</a></li>
-						<li class="active"><a href="Power BI.html">POWER BI</a></li>
-						<li><a href="Tableau.html">TABLEAU</a></li>
-						<li><a href="EXCEL.html">EXCEL</a></li>
-						<li><a href="Looker_studio.html">LOOKER</a></li>
-						
-					</ul>
-					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-								<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-					</ul>
-				</nav>
+<header>
+    <div class="logo"><a href="index.html">Allen Arorong</a></div>
+    <nav>
+        <a href="index.html#solutions">Analytics Solutions</a>
+        <a href="index.html#powerbi">Power BI</a>
+        <a href="index.html#sql">SQL</a>
+        <a href="index.html#automation">AI Automation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
 
-				<!-- Main -->
-					<div id="main">
+<section class="hero">
+    <h1>Financial Bank Loan Dashboard</h1>
+    <div class="subtitle">Banking Analytics Case Study</div>
 
-						<!-- Post -->
-						<section class="post">
-							<header class="major">
-								<h1>Financial Bank Loan Dashboard </h1>
-								<video src="Video/Financial Bank Loan.mp4" autoplay loop muted class="image fit">
-									Your browser does not support the video tag.
-								  </video>								  
-								  <p>Unveiling Insights and Driving Success with Comprehensive Data Analysis and Visualization</p>
-								  <header class="major">
+    <p>
+        Interactive Power BI dashboard designed to analyze loan applications, funded amounts,
+        borrower profiles, loan performance, and key banking KPIs to support financial decision making.
+    </p>
 
-									<h3 style="font-weight: bold; text-align: left;">Situation:</h3>
-									<p style="text-align: left;">
-										During a project, I encountered a scenario where a financial institution was struggling to gain insights into their loan portfolio's health, risks, and composition. Existing reporting methods were inefficient and lacked a comprehensive overview.
-									</p>
-								
-									<h3 style="font-weight: bold; text-align: left;">Task:</h3>
-									<p style="text-align: left;">
-										My task was to design and develop a solution that would streamline loan data analysis, improve accessibility for stakeholders, and deliver actionable insights for informed decision-making.
-									</p>
-								
-									<h3 style="font-weight: bold; text-align: left;">Action:</h3>
-									<p style="text-align: left;">
-										I leveraged Power BI to create a custom dashboard, strategically divided into three key sections:
-									</p>
-								
-									<h4 style="font-weight: bold; text-align: left;">Executive Summary:</h4>
-									<ul style="text-align: left;">
-										<li>Designed a high-level overview showcasing key performance indicators (KPIs) like loan volume, funded amounts, repayment rates, and interest rates. This offered a snapshot of the portfolio's overall health and financial performance.</li>
-									</ul>
-								
-									<h4 style="font-weight: bold; text-align: left;">Risk Assessment:</h4>
-									<ul style="text-align: left;">
-										<li>Developed a risk assessment section analyzing "good" vs. "bad" loans to identify potential risk concentrations and areas needing attention. This involved defining clear criteria for loan quality and visualizing the distribution of good and bad loans along with relevant financial metrics.</li>
-									</ul>
-								
-									<h4 style="font-weight: bold; text-align: left;">Detailed Loan Portfolio Analysis:</h4>
-									<ul style="text-align: left;">
-										<li>Created a detailed loan portfolio analysis section, serving as a comprehensive database. This allowed for the exploration of individual loan details, tracking of loan status, and analysis of various performance metrics. The aim was to empower users to conduct in-depth research, identify trends, and make data-driven decisions regarding lending strategies.</li>
-									</ul>
-								
-									<h3 style="font-weight: bold; text-align: left;">Result:</h3>
-									<p style="text-align: left;">
-										The Power BI dashboard I created transformed how the institution managed its loan portfolio. It provided:
-									</p>
-									<ul style="text-align: left;">
-										<li>A user-friendly interface accessible to stakeholders of varying technical expertise.</li>
-										<li>Immediate access to critical insights, enabling proactive risk management and faster, more informed decision-making.</li>
-										<li>A granular view of the portfolio, facilitating targeted interventions and strategic adjustments to lending practices.</li>
-										<li>A significant reduction in the time and effort required for loan data analysis, leading to increased efficiency and productivity.</li>
-									</ul>
-								</header>
-								
-								
-								
-								
-								  
-								  
-								  
-								  
-								  
-								  
-							  
-							  <div style="display: flex; justify-content: center;">
+    <div class="btns">
+        <a class="btn" href="#overview">Project Overview</a>
+        <a class="btn secondary" href="#video-demo">Watch Demo</a>
+        <a class="btn secondary" href="#live-demo">Try Live Dashboard</a>
+        <a class="btn secondary" href="index.html#powerbi">Back to Projects</a>
+    </div>
 
-								<iframe title="Financial" width="1140" height="542" src="https://app.powerbi.com/view?r=eyJrIjoiM2E3ZDIzNTctYWQ2NS00Njk3LWE5MGEtMWYwMjhkNmFlOTZhIiwidCI6ImVlYjIxYjhlLTIwMTEtNDg5YS04ODQwLWFkMTBmOGFiZWU3OSIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
-							  </div>
-							  <br>
-							  <br>
-							  <br>
-					  
-								<ul class="actions special">
-								  <li><a href="https://app.powerbi.com/view?r=eyJrIjoiM2E3ZDIzNTctYWQ2NS00Njk3LWE5MGEtMWYwMjhkNmFlOTZhIiwidCI6ImVlYjIxYjhlLTIwMTEtNDg5YS04ODQwLWFkMTBmOGFiZWU3OSIsImMiOjh9" target="_blank" class="button">View Project</a></li>
-							  </ul>
-			
-			
-							  
-							  <!-- Footer -->
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
-							  <br>
+    <div class="stack center">
+        <span>Power BI</span>
+        <span>DAX</span>
+        <span>Power Query</span>
+        <span>Financial Analytics</span>
+        <span>Banking Dashboard</span>
+        <span>Business Intelligence</span>
+    </div>
+</section>
 
+<section id="overview">
+    <h2>Project Overview</h2>
+    <p class="section-intro">
+        This dashboard provides an executive view of banking and loan performance,
+        allowing users to monitor lending activity, customer demographics,
+        funded amounts, repayment trends, and overall portfolio performance.
+    </p>
 
-							  <section class="split contact">
-								<section class="alt">
-								  <h3 style="text-align: left;">Location</h3>
-								  <p>Philippines, Iloilo City<br /></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Mobile number</h3>
-								  <p><a href="#">+639983369301</a></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Email</h3>
-								  <p><a href="#">allen.arorong23@gmail.com</a></p>
-								</section>
-								<section>
-								  <h3 style="text-align: left;">Social</h3>
-								  <ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/allentheanalyst/" target="_blank" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/AllenDataAnalyst" target="_blank" class="icon brands alt fa-github"><span class="label">gitHub</span></a></li>
-								  </ul>
-								</section>
-							  </section>
-							  </footer>
-							  
+    <div class="grid">
+        <div class="card">
+            <h3>Business Focus</h3>
+            <p>Loan applications, funded amounts, borrower profiles, loan status, and lending performance.</p>
+        </div>
 
-		<!-- Copyright -->
-			<div id="copyright">
-				<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-			</div>
+        <div class="card">
+            <h3>Dashboard Goal</h3>
+            <p>Help financial teams monitor loan portfolio health and identify lending trends.</p>
+        </div>
 
-	</div>
+        <div class="card">
+            <h3>Reporting Value</h3>
+            <p>Turns loan data into clear executive insights for banking and financial decision makers.</p>
+        </div>
+    </div>
+</section>
+<section id="video-demo">
+    <h2>Video Walkthrough</h2>
+    <p class="section-intro">
+        Watch a quick walkthrough of the Financial Bank Loan dashboard.
+    </p>
 
-<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+    <div class="preview">
+        <video src="Video/Financial Bank Loan.mp4" autoplay loop muted playsinline controls></video>
+    </div>
+</section>
+
+<section id="live-demo">
+    <h2>Try the Dashboard Live</h2>
+    <p class="section-intro">
+        Explore the interactive Financial Bank Loan dashboard directly in your browser.
+        Analyze loan applications, funded amounts, customer profiles, loan status,
+        and lending performance through an interactive Power BI report.
+    </p>
+
+    <div class="preview">
+        <iframe
+            title="Financial Bank Loan Power BI Dashboard"
+            src="https://app.powerbi.com/view?r=eyJrIjoiM2E3ZDIzNTctYWQ2NS00Njk3LWE5MGEtMWYwMjhkNmFlOTZhIiwidCI6ImVlYjIxYjhlLTIwMTEtNDg5YS04ODQwLWFkMTBmOGFiZWU3OSIsImMiOjh9"
+            allowfullscreen="true">
+        </iframe>
+    </div>
+
+<div class="btns">
+
+    <a class="btn"
+       href="https://app.powerbi.com/reportEmbed?reportId=bc519eb7-ce52-4c2c-a2d5-cae2e79590df&autoAuth=true&ctid=eeb21b8e-2011-489a-8840-ad10f8abee79"
+       target="_blank">
+        🚀 Open Full Screen Dashboard
+    </a>
+
+    <a class="btn secondary" href="#video-demo">
+        🎥 Watch Video Demo
+    </a>
+
+</div>
+
+<p style="max-width:900px;margin:20px auto 0;text-align:center;color:#94a3b8;font-size:15px;line-height:1.7;">
+
+<strong>Can't access the live dashboard?</strong><br>
+Some Power BI reports may require authorization depending on Microsoft Power BI sharing settings. If the interactive report is unavailable, simply click <strong>"Watch Video Demo"</strong> above to explore the dashboard's features, visualizations, and business insights.
+
+</section>
+
+<section>
+    <div class="content-box">
+        <h2>Business Problem</h2>
+        <p>
+            Banks and lending institutions often manage large volumes of loan records, making it difficult
+            to monitor lending performance, borrower behavior, approval trends, and portfolio health using static reports.
+        </p>
+
+        <p>
+            Decision makers need a centralized reporting solution that provides visibility into loan applications,
+            funded amounts, customer demographics, and key lending KPIs.
+        </p>
+
+        <h2>Solution</h2>
+        <p>
+            I developed an interactive Power BI dashboard that consolidates loan data into a single reporting solution.
+            Users can analyze lending performance, monitor customer trends, compare loan statuses,
+            and evaluate portfolio performance using interactive visuals and filters.
+        </p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Loan application analysis</li>
+            <li>Funded amount monitoring</li>
+            <li>Loan approval and rejection trends</li>
+            <li>Borrower demographic insights</li>
+            <li>Loan status analysis</li>
+            <li>Interactive filtering and drilldown</li>
+            <li>Executive KPI dashboard</li>
+        </ul>
+
+        <h2>Tools Used</h2>
+        <div class="stack">
+            <span>Power BI</span>
+            <span>DAX</span>
+            <span>Power Query</span>
+            <span>Banking Analytics</span>
+            <span>Financial Reporting</span>
+            <span>Business Intelligence</span>
+        </div>
+
+        <h2>Business Value</h2>
+        <p>
+            This dashboard enables financial institutions to monitor lending performance,
+            identify business trends, improve reporting efficiency,
+            and support data driven lending decisions through interactive analytics.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Dashboard Highlights</h2>
+    <p class="section-intro">
+        Key lending areas this dashboard helps business users analyze.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Loan Portfolio</h3>
+            <p>Monitor total applications, funded loans, approval rates, and portfolio growth.</p>
+        </div>
+
+        <div class="card">
+            <h3>Customer Insights</h3>
+            <p>Analyze borrower demographics, income levels, and customer segments.</p>
+        </div>
+
+        <div class="card">
+            <h3>Executive KPIs</h3>
+            <p>Track lending performance, financial metrics, and business trends through interactive dashboards.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Need a Similar Dashboard?</h2>
+    <p class="section-intro">
+        I can help build Power BI financial dashboards, SQL reports, and automation workflows for your business.
+    </p>
+
+    <div class="btns">
+        <a class="btn" href="index.html#contact">Contact Me</a>
+        <a class="btn secondary" href="index.html#powerbi">View More Projects</a>
+    </div>
+</section>
+
+<footer>
+    Allen Arorong • Data Analytics & AI Automation Consultant
+</footer>
 
 </body>
-</html><!DOCTYPE HTML>
+</html>
