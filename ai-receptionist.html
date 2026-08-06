@@ -3,39 +3,868 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>AI Receptionist Case Study | Allen Arorong</title>
+
 <meta name="description" content="AI receptionist and appointment scheduling case study using Vapi, n8n, Google Calendar, Airtable, and structured webhooks.">
+
 <style>
-:root{--bg:#0f172a;--panel:#111827;--card:#1f2937;--card2:#172033;--accent:#18bfef;--text:#e5e7eb;--muted:#cbd5e1;--soft:#94a3b8;--border:#334155}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}header{position:sticky;top:0;z-index:10;background:rgba(17,24,39,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:800}.back{color:var(--accent);text-decoration:none;font-weight:700}.hero{padding:76px 0 62px;background:linear-gradient(135deg,#0f172a,#172554)}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:13px}.hero h1{font-size:48px;line-height:1.12;margin:10px 0 16px}.hero p{max-width:840px;color:var(--muted);font-size:19px;margin:0}.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.tag{padding:7px 11px;border-radius:18px;background:#334155;border:1px solid rgba(255,255,255,.08);font-size:13px}section{padding:62px 0}.alt{background:var(--panel)}h2{font-size:32px;margin:0 0 12px}.intro{max-width:850px;color:var(--muted);margin:0 0 30px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}.card h3{margin:0 0 10px}.card ul{margin:12px 0 0;padding-left:20px;color:var(--muted)}.outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:26px}.outcome{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:19px;text-align:center}.outcome strong{display:block}.outcome span{color:var(--soft);font-size:13px}.video-placeholder{min-height:380px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1220,#172033);border:1px dashed #475569;border-radius:16px;padding:30px}.play{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:var(--accent);color:#001018;font-size:30px}.video-placeholder h3{margin:0 0 8px}.video-placeholder p{color:var(--muted);max-width:590px;margin:auto}.coming{display:inline-block;margin-top:16px;padding:6px 11px;border-radius:16px;background:#334155;color:var(--soft);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}.process{display:grid;gap:24px}.step{display:grid;grid-template-columns:72px 1fr;gap:18px;background:var(--card);border:1px solid var(--border);border-radius:15px;padding:22px}.step-number{width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#000;font-size:20px;font-weight:900}.step h3{margin:3px 0 6px}.step p{margin:0 0 16px;color:var(--muted)}.step img{width:100%;max-height:450px;object-fit:contain;background:#0b1220;border:1px solid var(--border);border-radius:10px}.step a{display:block}.visual{margin-top:26px}.visual h3{margin:0 0 12px}.visual a{display:flex;justify-content:center;background:#0b1220;border:1px solid var(--border);border-radius:14px;padding:10px}.visual img{max-width:100%;max-height:620px;object-fit:contain}.logic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.logic{background:var(--card);border-left:4px solid var(--accent);border-radius:10px;padding:20px}.logic strong{display:block;margin-bottom:5px}.logic span{color:var(--muted);font-size:14px}table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border)}th,td{text-align:left;padding:15px;border-bottom:1px solid var(--border)}th{color:var(--accent);background:var(--card2)}td{color:var(--muted)}tr:last-child td{border-bottom:0}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.check{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px;color:var(--muted)}.check strong{color:#fff}.cta{text-align:center}.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px}.btn{display:inline-block;padding:12px 19px;border-radius:8px;background:var(--accent);color:#000;text-decoration:none;font-weight:800}.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}footer{padding:34px 0;text-align:center;color:var(--soft);border-top:1px solid var(--border)}@media(max-width:760px){.hero h1{font-size:36px}.grid,.outcomes,.logic-grid,.checklist{grid-template-columns:1fr}.step{grid-template-columns:1fr}.step-number{width:44px;height:44px}.video-placeholder{min-height:300px}section{padding:48px 0}}
+:root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --card: #1f2937;
+    --card2: #172033;
+    --accent: #18bfef;
+    --text: #e5e7eb;
+    --muted: #cbd5e1;
+    --soft: #94a3b8;
+    --border: #334155;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+}
+
+a {
+    color: inherit;
+}
+
+.wrap {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(17, 24, 39, 0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.nav {
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-weight: 800;
+}
+
+.back {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    padding: 76px 0 62px;
+    background: linear-gradient(135deg, #0f172a, #172554);
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.12;
+    margin: 10px 0 16px;
+}
+
+.hero p {
+    max-width: 840px;
+    color: var(--muted);
+    font-size: 19px;
+    margin: 0;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.tag {
+    padding: 7px 11px;
+    border-radius: 18px;
+    background: #334155;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+}
+
+section {
+    padding: 62px 0;
+}
+
+.alt {
+    background: var(--panel);
+}
+
+h2 {
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+.intro {
+    max-width: 850px;
+    color: var(--muted);
+    margin: 0 0 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+}
+
+.card ul {
+    margin: 12px 0 0;
+    padding-left: 20px;
+    color: var(--muted);
+}
+
+.outcomes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 26px;
+}
+
+.outcome {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 19px;
+    text-align: center;
+}
+
+.outcome strong {
+    display: block;
+}
+
+.outcome span {
+    color: var(--soft);
+    font-size: 13px;
+}
+
+.video-player {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.28);
+}
+
+.video-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.process {
+    display: grid;
+    gap: 24px;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+}
+
+.step-number {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.step h3 {
+    margin: 3px 0 6px;
+}
+
+.step p {
+    margin: 0 0 16px;
+    color: var(--muted);
+}
+
+.step img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.step a {
+    display: block;
+}
+
+.visual {
+    margin-top: 26px;
+}
+
+.visual h3 {
+    margin: 0 0 12px;
+}
+
+.visual a {
+    display: flex;
+    justify-content: center;
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 10px;
+}
+
+.visual img {
+    max-width: 100%;
+    max-height: 620px;
+    object-fit: contain;
+}
+
+.logic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.logic {
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.logic strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.logic span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+}
+
+th,
+td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    color: var(--accent);
+    background: var(--card2);
+}
+
+td {
+    color: var(--muted);
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+.checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.check {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--muted);
+}
+
+.check strong {
+    color: #fff;
+}
+
+.cta {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 19px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+footer {
+    padding: 34px 0;
+    text-align: center;
+    color: var(--soft);
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 760px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .grid,
+    .outcomes,
+    .logic-grid,
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        grid-template-columns: 1fr;
+    }
+
+    .step-number {
+        width: 44px;
+        height: 44px;
+    }
+
+    section {
+        padding: 48px 0;
+    }
+}
 </style>
 </head>
+
 <body>
-<header><div class="wrap nav"><div class="brand">Allen Arorong</div><a class="back" href="index.html#automation">← Back to AI Automation</a></div></header>
+
+<header>
+    <div class="wrap nav">
+        <div class="brand">Allen Arorong</div>
+
+        <a class="back" href="index.html#automation">
+            ← Back to AI Automation
+        </a>
+    </div>
+</header>
+
 <main>
-<section class="hero"><div class="wrap"><div class="eyebrow">AI Automation Case Study</div><h1>AI Receptionist and Appointment Scheduler</h1><p>A voice driven scheduling system that checks real time availability, books appointments, manages changes, records call results, and keeps Google Calendar and Airtable synchronized through n8n.</p><div class="tags"><span class="tag">Vapi</span><span class="tag">n8n</span><span class="tag">Google Calendar</span><span class="tag">Airtable</span><span class="tag">Webhooks</span></div></div></section>
 
-<section><div class="wrap"><h2>Project Overview</h2><p class="intro">Vapi handles the caller conversation while n8n performs the scheduling work. Structured webhook requests connect the voice assistant to calendar availability, booking, rescheduling, cancellation, and call record workflows.</p><div class="grid"><div class="card"><h3>Business Challenge</h3><ul><li>Missed calls can become missed booking opportunities.</li><li>Availability checks create scheduling back and forth.</li><li>Manual appointment changes can cause inconsistent records.</li><li>Call details require separate follow up documentation.</li></ul></div><div class="card"><h3>Automated Solution</h3><ul><li>Checks open calendar times during the call.</li><li>Creates appointments and client records after validation.</li><li>Updates or cancels the original event and Airtable record.</li><li>Stores call results for operational follow up.</li></ul></div></div><div class="outcomes"><div class="outcome"><strong>Immediate Assistance</strong><span>Callers can handle scheduling during the conversation</span></div><div class="outcome"><strong>Real Time Availability</strong><span>Calendar slots are checked before booking</span></div><div class="outcome"><strong>Complete Lifecycle</strong><span>Book, update, cancel, and record results</span></div></div></div></section>
+<section class="hero">
+    <div class="wrap">
+        <div class="eyebrow">AI Automation Case Study</div>
 
-<section class="alt"><div class="wrap"><h2>Project Walkthrough</h2><p class="intro">A future recording will demonstrate the caller experience and the workflow actions created behind the conversation.</p><div class="video-placeholder"><div><div class="play">▶</div><h3>Project Walkthrough Video</h3><p>Coming soon. The planned two to four minute recording will cover availability, booking, an appointment change, and the final call record.</p><span class="coming">Video Coming Soon</span></div></div></div></section>
+        <h1>AI Receptionist and Appointment Scheduler</h1>
 
-<section><div class="wrap"><h2>How the Process Works</h2><p class="intro">Five workflow tools support the appointment lifecycle. Every request validates the input and returns a structured response to the voice assistant.</p><div class="process">
-<article class="step"><div class="step-number">1</div><div><h3>Check Availability</h3><p>The workflow receives the requested date, checks Google Calendar, and either confirms the requested time or formats available alternatives for Vapi.</p><a href="images/Receptionist_Process_01_Get_Slots.png" target="_blank"><img src="images/Receptionist_Process_01_Get_Slots.png" alt="AI Receptionist get available slots workflow"></a></div></article>
-<article class="step"><div class="step-number">2</div><div><h3>Book Appointment</h3><p>Required caller information is validated, the time is converted to the configured time zone, a Google Calendar event is created, and confirmed bookings are stored in Airtable.</p><a href="images/Receptionist_Process_02_Book_Slot.png" target="_blank"><img src="images/Receptionist_Process_02_Book_Slot.png" alt="AI Receptionist book appointment workflow"></a></div></article>
-<article class="step"><div class="step-number">3</div><div><h3>Update Appointment</h3><p>The workflow locates the original Airtable appointment, updates the connected calendar event and record, then returns the result and call identifier to Vapi.</p><a href="images/Receptionist_Process_03_Update_Slot.png" target="_blank"><img src="images/Receptionist_Process_03_Update_Slot.png" alt="AI Receptionist update appointment workflow"></a></div></article>
-<article class="step"><div class="step-number">4</div><div><h3>Cancel Appointment</h3><p>The original record is located, the calendar event is deleted, Airtable is marked as cancelled, and Vapi receives a success or friendly error response.</p><a href="images/Receptionist_Process_04_Cancel_Slot.png" target="_blank"><img src="images/Receptionist_Process_04_Cancel_Slot.png" alt="AI Receptionist cancel appointment workflow"></a></div></article>
-<article class="step"><div class="step-number">5</div><div><h3>Record Call Results</h3><p>At the end of the interaction, structured call arguments are captured and a call record is created or updated in Airtable for follow up and reporting.</p><a href="images/Receptionist_Process_05_Call_Results.png" target="_blank"><img src="images/Receptionist_Process_05_Call_Results.png" alt="AI Receptionist call results workflow"></a></div></article>
-</div></div></section>
+        <p>
+            A voice driven scheduling system that checks real time availability,
+            books appointments, manages changes, records call results, and keeps
+            Google Calendar and Airtable synchronized through n8n.
+        </p>
 
-<section class="alt"><div class="wrap"><h2>Project Visuals</h2><p class="intro">The overview explains the complete appointment lifecycle while the workflow image shows all five n8n tools.</p><div class="visual"><h3>Solution Overview</h3><a href="images/AI_Receptionist_Infographic.png" target="_blank"><img src="images/AI_Receptionist_Infographic.png" alt="AI Receptionist infographic"></a></div><div class="visual"><h3>Full n8n Workflow</h3><a href="images/AI_Receptionist_Workflow.png" target="_blank"><img src="images/AI_Receptionist_Workflow.png" alt="Full AI Receptionist workflow"></a></div></div></section>
+        <div class="tags">
+            <span class="tag">Vapi</span>
+            <span class="tag">n8n</span>
+            <span class="tag">Google Calendar</span>
+            <span class="tag">Airtable</span>
+            <span class="tag">Webhooks</span>
+        </div>
+    </div>
+</section>
 
-<section><div class="wrap"><h2>Important Automation Logic</h2><div class="logic-grid"><div class="logic"><strong>Required Information Validation</strong><span>Booking, update, and cancellation requests are checked before calendar actions run.</span></div><div class="logic"><strong>Availability Protection</strong><span>The requested time is checked before an event is created.</span></div><div class="logic"><strong>Time Zone Handling</strong><span>Appointment values are converted to the configured America Chicago time zone.</span></div><div class="logic"><strong>Structured Webhook Responses</strong><span>Success, alternatives, and friendly errors return in a format Vapi can use.</span></div><div class="logic"><strong>Calendar and Record Sync</strong><span>Google Calendar events and Airtable appointment records stay aligned.</span></div><div class="logic"><strong>Call Tracking</strong><span>Call identifiers and results are stored for follow up and reporting.</span></div></div></div></section>
+<section>
+    <div class="wrap">
+        <h2>Project Overview</h2>
 
-<section class="alt"><div class="wrap"><h2>Technology and Integrations</h2><table><thead><tr><th>Tool</th><th>Role in the Solution</th></tr></thead><tbody><tr><td>Vapi</td><td>Runs the voice conversation and calls the scheduling tools.</td></tr><tr><td>n8n</td><td>Validates inputs, runs scheduling logic, and returns webhook responses.</td></tr><tr><td>Google Calendar</td><td>Provides availability and stores appointment events.</td></tr><tr><td>Airtable</td><td>Stores appointment, client, status, and call result records.</td></tr><tr><td>Webhooks</td><td>Connect Vapi tool calls with each n8n scheduling workflow.</td></tr></tbody></table></div></section>
+        <p class="intro">
+            Vapi handles the caller conversation while n8n performs the
+            scheduling work. Structured webhook requests connect the voice
+            assistant to calendar availability, booking, rescheduling,
+            cancellation, and call record workflows.
+        </p>
 
-<section><div class="wrap"><h2>Production Considerations</h2><p class="intro">Before production use, the assistant should be tested for scheduling accuracy, privacy, reliability, and platform requirements.</p><div class="checklist"><div class="check"><strong>Credentials and OAuth</strong><br>Protect Vapi, Google Calendar, Airtable, and n8n credentials.</div><div class="check"><strong>Time Zone Testing</strong><br>Validate daylight saving changes and caller date interpretation.</div><div class="check"><strong>Double Booking Prevention</strong><br>Recheck availability immediately before creating an event.</div><div class="check"><strong>Idempotency</strong><br>Prevent repeated webhook calls from creating duplicate records.</div><div class="check"><strong>Privacy and Retention</strong><br>Limit stored caller information and define record retention rules.</div><div class="check"><strong>Error Monitoring</strong><br>Track failed tool calls, calendar errors, and incomplete Airtable updates.</div></div></div></section>
+        <div class="grid">
+            <div class="card">
+                <h3>Business Challenge</h3>
 
-<section class="alt cta"><div class="wrap"><h2>Explore the Project</h2><p class="intro" style="margin-left:auto;margin-right:auto">View the project visuals or return to the AI Automation portfolio.</p><div class="buttons"><a class="btn" href="images/AI_Receptionist_Infographic.png" target="_blank">View Infographic</a><a class="btn secondary" href="images/AI_Receptionist_Workflow.png" target="_blank">View Workflow</a><a class="btn secondary" href="index.html#automation">Back to Portfolio</a></div></div></section>
+                <ul>
+                    <li>Missed calls can become missed booking opportunities.</li>
+                    <li>Availability checks create scheduling back and forth.</li>
+                    <li>Manual appointment changes can cause inconsistent records.</li>
+                    <li>Call details require separate follow up documentation.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Automated Solution</h3>
+
+                <ul>
+                    <li>Checks open calendar times during the call.</li>
+                    <li>Creates appointments and client records after validation.</li>
+                    <li>Updates or cancels the original event and Airtable record.</li>
+                    <li>Stores call results for operational follow up.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="outcomes">
+            <div class="outcome">
+                <strong>Immediate Assistance</strong>
+                <span>Callers can handle scheduling during the conversation</span>
+            </div>
+
+            <div class="outcome">
+                <strong>Real Time Availability</strong>
+                <span>Calendar slots are checked before booking</span>
+            </div>
+
+            <div class="outcome">
+                <strong>Complete Lifecycle</strong>
+                <span>Book, update, cancel, and record results</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="alt">
+    <div class="wrap">
+        <h2>Project Walkthrough</h2>
+
+        <p class="intro">
+            Watch the AI receptionist check real time availability, book an
+            appointment, update or cancel a schedule, and save the final call
+            result through one connected workflow.
+        </p>
+
+        <div class="video-player">
+            <iframe
+                src="https://www.youtube.com/embed/kKuiTjJapkA?rel=0"
+                title="AI Receptionist Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <h2>How the Process Works</h2>
+
+        <p class="intro">
+            Five workflow tools support the appointment lifecycle. Every request
+            validates the input and returns a structured response to the voice
+            assistant.
+        </p>
+
+        <div class="process">
+
+            <article class="step">
+                <div class="step-number">1</div>
+
+                <div>
+                    <h3>Check Availability</h3>
+
+                    <p>
+                        The workflow receives the requested date, checks Google
+                        Calendar, and either confirms the requested time or
+                        formats available alternatives for Vapi.
+                    </p>
+
+                    <a href="images/Receptionist_Process_01_Get_Slots.png" target="_blank">
+                        <img
+                            src="images/Receptionist_Process_01_Get_Slots.png"
+                            alt="AI Receptionist get available slots workflow"
+                        >
+                    </a>
+                </div>
+            </article>
+
+            <article class="step">
+                <div class="step-number">2</div>
+
+                <div>
+                    <h3>Book Appointment</h3>
+
+                    <p>
+                        Required caller information is validated, the time is
+                        converted to the configured time zone, a Google Calendar
+                        event is created, and confirmed bookings are stored in
+                        Airtable.
+                    </p>
+
+                    <a href="images/Receptionist_Process_02_Book_Slot.png" target="_blank">
+                        <img
+                            src="images/Receptionist_Process_02_Book_Slot.png"
+                            alt="AI Receptionist book appointment workflow"
+                        >
+                    </a>
+                </div>
+            </article>
+
+            <article class="step">
+                <div class="step-number">3</div>
+
+                <div>
+                    <h3>Update Appointment</h3>
+
+                    <p>
+                        The workflow locates the original Airtable appointment,
+                        updates the connected calendar event and record, then
+                        returns the result and call identifier to Vapi.
+                    </p>
+
+                    <a href="images/Receptionist_Process_03_Update_Slot.png" target="_blank">
+                        <img
+                            src="images/Receptionist_Process_03_Update_Slot.png"
+                            alt="AI Receptionist update appointment workflow"
+                        >
+                    </a>
+                </div>
+            </article>
+
+            <article class="step">
+                <div class="step-number">4</div>
+
+                <div>
+                    <h3>Cancel Appointment</h3>
+
+                    <p>
+                        The original record is located, the calendar event is
+                        deleted, Airtable is marked as cancelled, and Vapi
+                        receives a success or friendly error response.
+                    </p>
+
+                    <a href="images/Receptionist_Process_04_Cancel_Slot.png" target="_blank">
+                        <img
+                            src="images/Receptionist_Process_04_Cancel_Slot.png"
+                            alt="AI Receptionist cancel appointment workflow"
+                        >
+                    </a>
+                </div>
+            </article>
+
+            <article class="step">
+                <div class="step-number">5</div>
+
+                <div>
+                    <h3>Record Call Results</h3>
+
+                    <p>
+                        At the end of the interaction, structured call arguments
+                        are captured and a call record is created or updated in
+                        Airtable for follow up and reporting.
+                    </p>
+
+                    <a href="images/Receptionist_Process_05_Call_Results.png" target="_blank">
+                        <img
+                            src="images/Receptionist_Process_05_Call_Results.png"
+                            alt="AI Receptionist call results workflow"
+                        >
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="alt">
+    <div class="wrap">
+        <h2>Project Visuals</h2>
+
+        <p class="intro">
+            The overview explains the complete appointment lifecycle while the
+            workflow image shows all five n8n tools.
+        </p>
+
+        <div class="visual">
+            <h3>Solution Overview</h3>
+
+            <a href="images/AI_Receptionist_Infographic.png" target="_blank">
+                <img
+                    src="images/AI_Receptionist_Infographic.png"
+                    alt="AI Receptionist infographic"
+                >
+            </a>
+        </div>
+
+        <div class="visual">
+            <h3>Full n8n Workflow</h3>
+
+            <a href="images/AI_Receptionist_Workflow.png" target="_blank">
+                <img
+                    src="images/AI_Receptionist_Workflow.png"
+                    alt="Full AI Receptionist workflow"
+                >
+            </a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <h2>Important Automation Logic</h2>
+
+        <div class="logic-grid">
+            <div class="logic">
+                <strong>Required Information Validation</strong>
+                <span>
+                    Booking, update, and cancellation requests are checked before
+                    calendar actions run.
+                </span>
+            </div>
+
+            <div class="logic">
+                <strong>Availability Protection</strong>
+                <span>
+                    The requested time is checked before an event is created.
+                </span>
+            </div>
+
+            <div class="logic">
+                <strong>Time Zone Handling</strong>
+                <span>
+                    Appointment values are converted to the configured America
+                    Chicago time zone.
+                </span>
+            </div>
+
+            <div class="logic">
+                <strong>Structured Webhook Responses</strong>
+                <span>
+                    Success, alternatives, and friendly errors return in a format
+                    Vapi can use.
+                </span>
+            </div>
+
+            <div class="logic">
+                <strong>Calendar and Record Sync</strong>
+                <span>
+                    Google Calendar events and Airtable appointment records stay
+                    aligned.
+                </span>
+            </div>
+
+            <div class="logic">
+                <strong>Call Tracking</strong>
+                <span>
+                    Call identifiers and results are stored for follow up and
+                    reporting.
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="alt">
+    <div class="wrap">
+        <h2>Technology and Integrations</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tool</th>
+                    <th>Role in the Solution</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Vapi</td>
+                    <td>
+                        Runs the voice conversation and calls the scheduling tools.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>n8n</td>
+                    <td>
+                        Validates inputs, runs scheduling logic, and returns
+                        webhook responses.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Google Calendar</td>
+                    <td>
+                        Provides availability and stores appointment events.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Airtable</td>
+                    <td>
+                        Stores appointment, client, status, and call result records.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Webhooks</td>
+                    <td>
+                        Connect Vapi tool calls with each n8n scheduling workflow.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <h2>Production Considerations</h2>
+
+        <p class="intro">
+            Before production use, the assistant should be tested for scheduling
+            accuracy, privacy, reliability, and platform requirements.
+        </p>
+
+        <div class="checklist">
+            <div class="check">
+                <strong>Credentials and OAuth</strong><br>
+                Protect Vapi, Google Calendar, Airtable, and n8n credentials.
+            </div>
+
+            <div class="check">
+                <strong>Time Zone Testing</strong><br>
+                Validate daylight saving changes and caller date interpretation.
+            </div>
+
+            <div class="check">
+                <strong>Double Booking Prevention</strong><br>
+                Recheck availability immediately before creating an event.
+            </div>
+
+            <div class="check">
+                <strong>Idempotency</strong><br>
+                Prevent repeated webhook calls from creating duplicate records.
+            </div>
+
+            <div class="check">
+                <strong>Privacy and Retention</strong><br>
+                Limit stored caller information and define record retention rules.
+            </div>
+
+            <div class="check">
+                <strong>Error Monitoring</strong><br>
+                Track failed tool calls, calendar errors, and incomplete Airtable
+                updates.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="alt cta">
+    <div class="wrap">
+        <h2>Explore the Project</h2>
+
+        <p class="intro" style="margin-left:auto; margin-right:auto;">
+            View the project visuals or return to the AI Automation portfolio.
+        </p>
+
+        <div class="buttons">
+            <a
+                class="btn"
+                href="images/AI_Receptionist_Infographic.png"
+                target="_blank"
+            >
+                View Infographic
+            </a>
+
+            <a
+                class="btn secondary"
+                href="images/AI_Receptionist_Workflow.png"
+                target="_blank"
+            >
+                View Workflow
+            </a>
+
+            <a class="btn secondary" href="index.html#automation">
+                Back to Portfolio
+            </a>
+        </div>
+    </div>
+</section>
+
 </main>
-<footer><div class="wrap">Allen Arorong • Data Analytics &amp; AI Automation Consultant</div></footer>
+
+<footer>
+    <div class="wrap">
+        Allen Arorong • Data Analytics &amp; AI Automation Consultant
+    </div>
+</footer>
+
 </body>
 </html>
